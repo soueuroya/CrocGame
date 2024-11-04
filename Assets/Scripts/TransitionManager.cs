@@ -8,15 +8,10 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] BaseUIMenu mainMenu;
     [SerializeField] BaseUIMenu gameMenu;
     [SerializeField] BaseUIMenu optionsMenu;
-
     [SerializeField] BaseUIMenu currentMenu;
 
-    private void OnValidate()
-    {
-        mainMenu = GameObject.Find("MainMenuCanvas")?.GetComponent<BaseUIMenu>();
-        gameMenu = GameObject.Find("GameCanvas")?.GetComponent<BaseUIMenu>();
-        optionsMenu = GameObject.Find("OptionsCanvas")?.GetComponent<BaseUIMenu>();
-    }
+    [SerializeField] AudioClip menuMusic;
+    [SerializeField] AudioClip gameMusic;
 
     private void Awake()
     {
@@ -40,10 +35,10 @@ public class TransitionManager : MonoBehaviour
 
     public void OnStartGameSelected()
     {
-        //SceneManager.LoadScene("Game");
+        MusicManager.Instance.StartMusic(gameMusic);
+
         currentMenu.Hide();
         gameMenu.Show();
-
         currentMenu = gameMenu;
     }
 
@@ -51,15 +46,15 @@ public class TransitionManager : MonoBehaviour
     {
         currentMenu.Hide();
         optionsMenu.Show();
-
         currentMenu = optionsMenu;
     }
 
     public void OnMainMenuSelected()
     {
+        MusicManager.Instance.StartMusic(menuMusic);
+
         currentMenu.Hide();
         mainMenu.Show();
-
         currentMenu = mainMenu;
     }
 

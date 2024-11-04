@@ -40,12 +40,12 @@ public class MenuUIManager : BaseUIMenu
         }
 
 
-        if (startGameButton != null)
+        if (exitGameButton != null)
         {
             exitGameButton.onClick.AddListener(EventManager.OnGameExit);
         }
 
-        if (startGameButton != null)
+        if (optionsGameButton != null)
         {
             optionsGameButton.onClick.AddListener(EventManager.OnOptionsSelect);
         }
@@ -58,14 +58,14 @@ public class MenuUIManager : BaseUIMenu
             startGameButton.onClick.RemoveListener(EventManager.OnGameStart);
         }
 
-        if (startGameButton != null)
+        if (exitGameButton != null)
         {
-            startGameButton.onClick.RemoveListener(EventManager.OnGameExit);
+            exitGameButton.onClick.RemoveListener(EventManager.OnGameExit);
         }
 
-        if (startGameButton != null)
+        if (optionsGameButton != null)
         {
-            startGameButton.onClick.RemoveListener(EventManager.OnOptionsSelect);
+            optionsGameButton.onClick.RemoveListener(EventManager.OnOptionsSelect);
         }
     }
     #endregion Initialization

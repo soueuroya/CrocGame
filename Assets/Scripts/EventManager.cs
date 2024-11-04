@@ -35,6 +35,10 @@ public class EventManager : MonoBehaviour
     public static void OnGameStart() { FireEvent(OnStartGameSelected); }
 
 
+    public static event EventFired OnResumeGameSelected;
+    public static void OnGameResume() { FireEvent(OnResumeGameSelected); }
+
+
     public static event EventFired OnStartHovered;
     public static void OnStartHover() { FireEvent(OnStartHovered); }
 
@@ -45,6 +49,10 @@ public class EventManager : MonoBehaviour
 
     public static event EventFired OnExitGameSelected;
     public static void OnGameExit() { FireEvent(OnExitGameSelected); }
+
+
+    public static event EventFired OnMainMenuSelected;
+    public static void OnMainMenu() { FireEvent(OnMainMenuSelected); }
 
 
     public static event EventFired OnOptionsSelected;
