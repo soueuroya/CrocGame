@@ -20,7 +20,7 @@ Character Movement.
 3rd
 Level End.
 Score, Time and other data.
-*Prefabs.
+*Player Prefs.
 
 4th
 *Addressables.
