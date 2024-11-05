@@ -24,10 +24,31 @@ public class VolumeSlider : MonoBehaviour
 
     private void OnDestroy()
     {
+        EventManager.OnDataUpdated -= UpdateData;
         slider.onValueChanged.RemoveListener(OnVolumeChange);
     }
 
+    private void Awake()
+    {
+        EventManager.OnDataUpdated += UpdateData;
+    }
+
     void Start()
+    {
+        UpdateData();
+        slider.onValueChanged.AddListener(OnVolumeChange);
+    }
+
+    public void OnVolumeChange(float value)
+    {
+        AudioManager.Instance.PlayType();
+        AudioManager.Instance.masterMixer.SetFloat(volumePrefString, Mathf.Log10(value) * 20);
+        SafePrefs.SetFloat(volumePrefString, value);
+        SafePrefs.Save();
+        label.text = String.Format("{0}%", (int)(value * 100));
+    }
+
+    private void UpdateData()
     {
         switch (volumeProperty)
         {
@@ -55,16 +76,5 @@ public class VolumeSlider : MonoBehaviour
             label.text = String.Format("{0}%", (int)(volume * 100));
             AudioManager.Instance.masterMixer.SetFloat(volumePrefString, Mathf.Log10(volume) * 20);
         }
-
-        slider.onValueChanged.AddListener(OnVolumeChange);
-    }
-
-    public void OnVolumeChange(float value)
-    {
-        AudioManager.Instance.PlayType();
-        AudioManager.Instance.masterMixer.SetFloat(volumePrefString, Mathf.Log10(value) * 20);
-        SafePrefs.SetFloat(volumePrefString, value);
-        SafePrefs.Save();
-        label.text = String.Format("{0}%", (int)(value * 100));
     }
 }

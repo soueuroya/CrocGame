@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class BaseUIMenu : MonoBehaviour
 {
-    [SerializeField] Transform menuObjectsContainer;
-    [SerializeField] List<Transform> menuObjects;
-    [SerializeField] Animator anim;
+    //[SerializeField] List<Transform> menuObjects;
+    [SerializeField] protected Animator anim;
 
     private void OnValidate()
     {
         anim = GetComponent<Animator>();
     }
-
-    private void Start()
-    {
-        foreach (var item in menuObjects)
-        {
-            item.SetParent(menuObjectsContainer);
-        }
-    }
-
+    
     public void Show()
     {
         anim.SetTrigger("Show");
@@ -29,5 +20,10 @@ public class BaseUIMenu : MonoBehaviour
     public void Hide()
     {
         anim.SetTrigger("Hide");
+    }
+
+    public void Hidden()
+    {
+        gameObject.SetActive(false);
     }
 }

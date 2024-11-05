@@ -8,28 +8,36 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] BaseUIMenu mainMenu;
     [SerializeField] BaseUIMenu gameMenu;
     [SerializeField] BaseUIMenu optionsMenu;
-    [SerializeField] BaseUIMenu currentMenu;
+    public enum Menus {Main, Game, Options}
+    [SerializeField] Menus currentMenu;
+    private Dictionary<Menus, BaseUIMenu> menuDictionary;
 
     [SerializeField] AudioClip menuMusic;
     [SerializeField] AudioClip gameMusic;
 
     private void Awake()
     {
-        currentMenu = mainMenu;
-    }
+        // Initialize the dictionary and assign menus
+        menuDictionary = new Dictionary<Menus, BaseUIMenu>
+        {
+            { Menus.Main, mainMenu },
+            { Menus.Game, gameMenu },
+            { Menus.Options, optionsMenu }
+        };
+        currentMenu = Menus.Main;
 
-    private void OnEnable()
-    {
         EventManager.OnStartGameSelected += OnStartGameSelected;
         EventManager.OnExitGameSelected += OnExitGameSelected;
         EventManager.OnOptionsSelected += OnOptionsSelected;
+        EventManager.OnMainMenuSelected += OnMainMenuSelected;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         EventManager.OnStartGameSelected -= OnStartGameSelected;
         EventManager.OnExitGameSelected -= OnExitGameSelected;
         EventManager.OnOptionsSelected -= OnOptionsSelected;
+        EventManager.OnMainMenuSelected -= OnMainMenuSelected;
     }
 
 
@@ -37,25 +45,28 @@ public class TransitionManager : MonoBehaviour
     {
         MusicManager.Instance.StartMusic(gameMusic);
 
-        currentMenu.Hide();
+        menuDictionary[currentMenu].Hide();
+        gameMenu.gameObject.SetActive(true);
         gameMenu.Show();
-        currentMenu = gameMenu;
+        currentMenu = Menus.Game;
     }
 
     public void OnOptionsSelected()
     {
-        currentMenu.Hide();
+        menuDictionary[currentMenu].Hide();
+        optionsMenu.gameObject.SetActive(true);
         optionsMenu.Show();
-        currentMenu = optionsMenu;
+        currentMenu = Menus.Options;
     }
 
     public void OnMainMenuSelected()
     {
         MusicManager.Instance.StartMusic(menuMusic);
 
-        currentMenu.Hide();
+        menuDictionary[currentMenu].Hide();
+        mainMenu.gameObject.SetActive(true);
         mainMenu.Show();
-        currentMenu = mainMenu;
+        currentMenu = Menus.Main;
     }
 
     public void OnExitGameSelected()

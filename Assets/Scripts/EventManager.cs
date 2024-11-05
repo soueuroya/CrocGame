@@ -67,6 +67,10 @@ public class EventManager : MonoBehaviour
     public static void OnDataSave() { FireEvent(OnDataSaved); }
 
 
+    public static event EventFired OnDataUpdated;
+    public static void OnDataUpdate() { FireEvent(OnDataUpdated); }
+
+
     public static event EventFired OnGameEnded;
     public static void OnGameEnd() { FireEvent(OnGameEnded); }
     #endregion Public Methods

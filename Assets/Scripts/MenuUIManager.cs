@@ -13,14 +13,20 @@ public class MenuUIManager : BaseUIMenu
     #region Initialization
     private void OnValidate()
     {
+        if (startGameButton == null)
         startGameButton = GameObject.Find("StartButton")?.GetComponent<Button>();
+
+        if (exitGameButton == null)
         exitGameButton = GameObject.Find("ExitButton")?.GetComponent<Button>();
+
+        if (optionsGameButton == null)
         optionsGameButton = GameObject.Find("OptionsButton")?.GetComponent<Button>();
     }
-    private void OnEnable()
+    private void Awake()
     {
         if (startGameButton != null)
         {
+            startGameButton.onClick.RemoveAllListeners();
             startGameButton.onClick.AddListener(EventManager.OnGameStart);
 
             // Add hover events
@@ -42,30 +48,32 @@ public class MenuUIManager : BaseUIMenu
 
         if (exitGameButton != null)
         {
+            exitGameButton.onClick.RemoveAllListeners();
             exitGameButton.onClick.AddListener(EventManager.OnGameExit);
         }
 
         if (optionsGameButton != null)
         {
+            optionsGameButton.onClick.RemoveAllListeners();
             optionsGameButton.onClick.AddListener(EventManager.OnOptionsSelect);
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (startGameButton != null)
         {
-            startGameButton.onClick.RemoveListener(EventManager.OnGameStart);
+            startGameButton.onClick.RemoveAllListeners();
         }
 
         if (exitGameButton != null)
         {
-            exitGameButton.onClick.RemoveListener(EventManager.OnGameExit);
+            exitGameButton.onClick.RemoveAllListeners();
         }
 
         if (optionsGameButton != null)
         {
-            optionsGameButton.onClick.RemoveListener(EventManager.OnOptionsSelect);
+            optionsGameButton.onClick.RemoveAllListeners();
         }
     }
     #endregion Initialization

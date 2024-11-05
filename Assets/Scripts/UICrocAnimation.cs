@@ -16,6 +16,7 @@ public class UICrocAnimation : MonoBehaviour
         EventManager.OnStartGameSelected += OnStartGameSelected;
         EventManager.OnOptionsSelected += OnStartGameSelected;
         EventManager.OnExitGameSelected += OnStartGameSelected;
+        EventManager.OnMainMenuSelected += OnMainMenuSelected;
 
         EventManager.OnStartHovered += OnStartHovered;
         EventManager.OnStartUnhovered += OnStartUnhovered;
@@ -26,6 +27,7 @@ public class UICrocAnimation : MonoBehaviour
         EventManager.OnStartGameSelected -= OnStartGameSelected;
         EventManager.OnOptionsSelected -= OnStartGameSelected;
         EventManager.OnExitGameSelected -= OnStartGameSelected;
+        EventManager.OnMainMenuSelected -= OnMainMenuSelected;
 
         EventManager.OnStartHovered -= OnStartHovered;
         EventManager.OnStartUnhovered -= OnStartUnhovered;
@@ -45,5 +47,10 @@ public class UICrocAnimation : MonoBehaviour
     public void OnStartUnhovered()
     {
         anim.SetBool("Hover", false);
+    }
+
+    public void OnMainMenuSelected()
+    {
+        anim.SetTrigger("Return");
     }
 }
