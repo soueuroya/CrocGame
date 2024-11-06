@@ -4,30 +4,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    // Prevent non-singleton constructor use.
-    protected EventManager() { }
-    public static EventManager Instance;
-
     public delegate void EventFired();
     public delegate void EventFired<T>(T payload);
-
-
-    #region Initialization
-    //Singleton awake
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
-    #endregion Initialization
 
 
     #region Public Methods
@@ -69,6 +47,20 @@ public class EventManager : MonoBehaviour
 
     public static event EventFired OnDataUpdated;
     public static void OnDataUpdate() { FireEvent(OnDataUpdated); }
+    
+    
+    public static event EventFired<PopupProperties> OnCreatePopup;
+    public static void OnCreatedPopup(PopupProperties popupProperties) { FireEvent(OnCreatePopup, popupProperties); }
+
+
+
+    public static event EventFired<ParallaxProperties> OnScrollForDuration;
+    public static void OnScrolledForDuration(ParallaxProperties pp) { FireEvent(OnScrollForDuration, pp); }
+
+
+
+    public static event EventFired<float> OnCharacterMove;
+    public static void OnCharacterMoved(float speed) { FireEvent(OnCharacterMove, speed); }
 
 
     public static event EventFired OnGameEnded;

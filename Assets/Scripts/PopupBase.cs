@@ -91,14 +91,14 @@ public class PopupBase : MonoBehaviour
     public virtual void OnPrimaryClick()
     {
         primaryCallback?.Invoke(); // Send another callback to this function, and on that callback close the popup.
-        AudioManager.Instance.PlayClick();
+        AudioManager.Instance.PlayType();
         ClosePopup();
     }
 
     public virtual void OnSecondaryClick()
     {
         secondaryCallback?.Invoke(); // Send another callback to this function, and on that callback close the popup.
-        AudioManager.Instance.PlayFail();
+        AudioManager.Instance.PlayType();
         ClosePopup(); 
     }
 
@@ -118,7 +118,6 @@ public class PopupBase : MonoBehaviour
             return;
         }
 
-        AudioManager.Instance.PlayPopup();
         canvasGroup.blocksRaycasts = true;
 
         LeanTween.value(canvasGroup.alpha, to: 1, time: AnimationTimers.POPUP_SHOW)

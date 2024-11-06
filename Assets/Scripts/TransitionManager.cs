@@ -57,6 +57,13 @@ public class TransitionManager : MonoBehaviour
         optionsMenu.gameObject.SetActive(true);
         optionsMenu.Show();
         currentMenu = Menus.Options;
+
+        Invoke("ScrollBackgroundToGame", 0.29f);
+    }
+
+    private void ScrollBackgroundToGame()
+    {
+        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2.2f, speed = 0.02f });
     }
 
     public void OnMainMenuSelected()
@@ -67,6 +74,13 @@ public class TransitionManager : MonoBehaviour
         mainMenu.gameObject.SetActive(true);
         mainMenu.Show();
         currentMenu = Menus.Main;
+
+        Invoke("ScrollBackgroundToMenu", 0.29f);
+    }
+
+    private void ScrollBackgroundToMenu()
+    {
+        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2.2f, speed = -0.02f });
     }
 
     public void OnExitGameSelected()

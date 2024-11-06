@@ -39,39 +39,20 @@ public class PopupProperties
 public class PopupManager : MonoBehaviour
 {
     [SerializeField] PopupBase prefab;
-    public static PopupManager Instance { get; private set; }
 
     // Singleton start
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            if (Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-        }
+        EventManager.OnCreatePopup += OnCreatePopup;
     }
 
-    public void CreateMessagePopup(string body, string title, string primaryButtonText, Action primaryCallback = null, string secondaryButtonText = null, Action secondaryCallback = null)
+    private void OnDestroy()
     {
-        CreatePopup(new PopupProperties(
-            _body: body,
-            _title: title,
-            _primaryButtonText: primaryButtonText,
-            _primaryCallback: primaryCallback,
-            _secondaryButtonText: secondaryButtonText,
-            _secondaryCallback: secondaryCallback
-            ));
+        EventManager.OnCreatePopup -= OnCreatePopup;
     }
 
 
-    private void CreatePopup(PopupProperties popupProperties)
+    private void OnCreatePopup(PopupProperties popupProperties)
     {
         var popup = Instantiate(prefab, gameObject.transform);
         popup.Initialize(popupProperties);

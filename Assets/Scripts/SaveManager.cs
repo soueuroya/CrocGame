@@ -2,7 +2,6 @@
 
 public class SaveManager : MonoBehaviour
 {
-
     private void Awake()
     {
         EventManager.OnDataDeleted += OnDataDeleted;
@@ -16,7 +15,8 @@ public class SaveManager : MonoBehaviour
 
     private void OnDataDeleted()
     {
-        PopupManager.Instance.CreateMessagePopup(body: "Do you wish to delete all data?", title: "Delete Data", primaryButtonText: "Yes", DeleteData, "No", null);
+        PopupProperties popupProperties = new PopupProperties("Do you wish to delete all data?", "Delete Data", "Yes", DeleteData, "No", null);
+        EventManager.OnCreatedPopup(popupProperties);
     }
 
     private void DeleteData()
@@ -24,5 +24,4 @@ public class SaveManager : MonoBehaviour
         SafePrefs.DeleteAll();
         EventManager.OnDataUpdate();
     }
-
 }

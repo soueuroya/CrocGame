@@ -13,33 +13,7 @@ public class AudioManager : MonoBehaviour
     // Component references
     public AudioMixer masterMixer { get; private set; }
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip uiAccept;
-    [SerializeField] AudioClip uiFail;
-    [SerializeField] AudioClip uiClick;
     [SerializeField] AudioClip uiType;
-    [SerializeField] AudioClip uiPopup;
-    [SerializeField] AudioClip uiToken;
-    [SerializeField] AudioClip uiBigAccept;
-    [SerializeField] AudioClip cardHover;
-    [SerializeField] AudioClip cardDrag;
-    [SerializeField] AudioClip cardDefensePlay;
-    [SerializeField] AudioClip cardAbilityPlay;
-    [SerializeField] AudioClip cardAttackPlay;
-    [SerializeField] AudioClip passTurn;
-    [SerializeField] AudioClip deckShuffle;
-    [SerializeField] AudioClip cardDraw;
-    [SerializeField] AudioClip energyLoss;
-    [SerializeField] AudioClip launch;
-    [SerializeField] AudioClip fight;
-    [SerializeField] AudioClip defeat;
-    [SerializeField] AudioClip victory;
-    [SerializeField] AudioClip brutal;
-    [SerializeField] AudioClip doctorra;
-    [SerializeField] AudioClip gogirl;
-    [SerializeField] AudioClip bluecollar;
-    [SerializeField] AudioClip sinderella;
-    [SerializeField] AudioClip ko;
-    [SerializeField] AudioClip versus;
     private float delay = 0;
 
     #region Initialization
@@ -127,26 +101,6 @@ public class AudioManager : MonoBehaviour
         StopAllCoroutines();//make dictionary of coroutines and string to only cancel fading for each mixer, not all mixers.
         StartCoroutine(StartFade(masterMixer, _exposedParam, _fadeDuration, _fadeToValue, _callback));
     }
-
-    public void PlayAccept()
-    {
-        audioSource.PlayOneShot(uiAccept);
-    }
-    public void PlayBigAccept()
-    {
-        audioSource.PlayOneShot(uiBigAccept);
-    }
-
-    public void PlayFail()
-    {
-        audioSource.PlayOneShot(uiFail);
-    }
-
-    public void PlayClick()
-    {
-        audioSource.PlayOneShot(uiClick);
-    }
-
     public void PlayType()
     {
         if (delay > 0)
@@ -155,115 +109,6 @@ public class AudioManager : MonoBehaviour
         }
         delay = 0.05f;
         audioSource.PlayOneShot(uiType);
-    }
-
-    public void PlayPopup()
-    {
-        audioSource.PlayOneShot(uiPopup);
-    }
-
-    public void PlayToken()
-    {
-        audioSource.PlayOneShot(uiToken);
-    }
-
-    public void PlayCardDrag()
-    {
-        audioSource.PlayOneShot(cardDrag);
-    }
-
-    public void PlayDefenseCardPlay()
-    {
-        audioSource.PlayOneShot(cardDefensePlay);
-    }
-
-    public void PlayAbilityCardPlay()
-    {
-        audioSource.PlayOneShot(cardAbilityPlay);
-    }
-
-    public void PlayAttackCardPlay()
-    {
-        audioSource.PlayOneShot(cardAttackPlay);
-    }
-
-    public void PlayPassTurn()
-    {
-        audioSource.PlayOneShot(passTurn);
-    }
-
-    public void PlayDeckShuffle()
-    {
-        audioSource.PlayOneShot(deckShuffle);
-    }
-
-    public void PlayEnergyLoss()
-    {
-        audioSource.PlayOneShot(energyLoss);
-    }
-
-    public void PlayLaunch()
-    {
-        audioSource.PlayOneShot(launch);
-    }
-
-    public void PlayFight()
-    {
-        audioSource.PlayOneShot(fight);
-    }
-
-    public void PlayDefeat()
-    {
-        audioSource.PlayOneShot(defeat);
-    }
-
-    public void PlayVictory()
-    {
-        audioSource.PlayOneShot(victory);
-    }
-
-    public void PlayKO()
-    {
-        audioSource.PlayOneShot(ko);
-    }
-
-    public void PlayVersus()
-    {
-        audioSource.PlayOneShot(versus);
-    }
-
-    public void PlaySinderella()
-    {
-        audioSource.PlayOneShot(sinderella);
-    }
-
-    public void PlayDoctorRa()
-    {
-        audioSource.PlayOneShot(doctorra);
-    }
-
-    public void PlayGoGirl()
-    {
-        audioSource.PlayOneShot(gogirl);
-    }
-
-    public void PlayBlueCollar()
-    {
-        audioSource.PlayOneShot(bluecollar);
-    }
-
-    public void PlayBrutal()
-    {
-        audioSource.PlayOneShot(brutal);
-    }
-    public void PlayCardDraw()
-    {
-        if (delay > 0)
-        {
-            return;
-        }
-        delay = 0.1f;
-        audioSource.PlayOneShot(cardDraw);
     }
     #endregion Public Methods
 
