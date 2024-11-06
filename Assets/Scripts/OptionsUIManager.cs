@@ -46,5 +46,6 @@ public class OptionsUIManager : BaseUIMenu
         }
     }
     #endregion Initialization
+
 }
 

@@ -1,19 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
     [SerializeField] BaseUIMenu mainMenu;
     [SerializeField] BaseUIMenu gameMenu;
     [SerializeField] BaseUIMenu optionsMenu;
-    public enum Menus {Main, Game, Options}
+    public enum Menus { Main, Game, Options }
     [SerializeField] Menus currentMenu;
     private Dictionary<Menus, BaseUIMenu> menuDictionary;
 
     [SerializeField] AudioClip menuMusic;
     [SerializeField] AudioClip gameMusic;
+
+    private bool inputLock;
+
+    #region Initialization
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class TransitionManager : MonoBehaviour
         EventManager.OnExitGameSelected += OnExitGameSelected;
         EventManager.OnOptionsSelected += OnOptionsSelected;
         EventManager.OnMainMenuSelected += OnMainMenuSelected;
+        EventManager.OnInputUnlocked += OnInputUnlocked;
     }
 
     private void OnDestroy()
@@ -38,36 +41,54 @@ public class TransitionManager : MonoBehaviour
         EventManager.OnExitGameSelected -= OnExitGameSelected;
         EventManager.OnOptionsSelected -= OnOptionsSelected;
         EventManager.OnMainMenuSelected -= OnMainMenuSelected;
+        EventManager.OnInputUnlocked -= OnInputUnlocked;
     }
 
+    #endregion Initialization
 
-    public void OnStartGameSelected()
+    #region Private Helpers
+    private void OnInputUnlocked()
     {
+        inputLock = false;
+    }
+
+    private void OnStartGameSelected()
+    {
+        if (inputLock) return;
+        inputLock = true;
+
+        AudioManager.Instance.PlayType();
         MusicManager.Instance.StartMusic(gameMusic);
 
         menuDictionary[currentMenu].Hide();
         gameMenu.gameObject.SetActive(true);
         gameMenu.Show();
         currentMenu = Menus.Game;
+
+        //Invoke("ScrollBackgroundToGame", 0.5f);
     }
 
-    public void OnOptionsSelected()
+    private void OnOptionsSelected()
     {
+        if (inputLock) return;
+        inputLock = true;
+
+        AudioManager.Instance.PlayType();
+
         menuDictionary[currentMenu].Hide();
         optionsMenu.gameObject.SetActive(true);
         optionsMenu.Show();
         currentMenu = Menus.Options;
 
-        Invoke("ScrollBackgroundToGame", 0.29f);
+        Invoke("ScrollBackgroundToGame", 0.5f);
     }
 
-    private void ScrollBackgroundToGame()
+    private void OnMainMenuSelected()
     {
-        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2.2f, speed = 0.02f });
-    }
+        if (inputLock) return;
+        inputLock = true;
 
-    public void OnMainMenuSelected()
-    {
+        AudioManager.Instance.PlayType();
         MusicManager.Instance.StartMusic(menuMusic);
 
         menuDictionary[currentMenu].Hide();
@@ -75,16 +96,16 @@ public class TransitionManager : MonoBehaviour
         mainMenu.Show();
         currentMenu = Menus.Main;
 
-        Invoke("ScrollBackgroundToMenu", 0.29f);
+        Invoke("ScrollBackgroundToMenu", 0.5f);
     }
 
-    private void ScrollBackgroundToMenu()
+    private void OnExitGameSelected()
     {
-        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2.2f, speed = -0.02f });
-    }
+        if (inputLock) return;
+        inputLock = true;
 
-    public void OnExitGameSelected()
-    {
+        AudioManager.Instance.PlayType();
+
         Invoke("ExitGame", 1);
     }
 
@@ -92,4 +113,16 @@ public class TransitionManager : MonoBehaviour
     {
         AppHelper.Quit();
     }
+
+    private void ScrollBackgroundToGame()
+    {
+        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2f, speed = 2f });
+    }
+
+    private void ScrollBackgroundToMenu()
+    {
+        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2f, speed = -2f });
+    }
+
+    #endregion Private Helpers
 }

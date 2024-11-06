@@ -13,6 +13,10 @@ public class EventManager : MonoBehaviour
     public static void OnGameStart() { FireEvent(OnStartGameSelected); }
 
 
+    public static event EventFired OnPauseGameSelected;
+    public static void OnGamePause() { FireEvent(OnPauseGameSelected); }
+
+
     public static event EventFired OnResumeGameSelected;
     public static void OnGameResume() { FireEvent(OnResumeGameSelected); }
 
@@ -31,6 +35,10 @@ public class EventManager : MonoBehaviour
 
     public static event EventFired OnMainMenuSelected;
     public static void OnMainMenu() { FireEvent(OnMainMenuSelected); }
+
+
+    public static event EventFired OnInputUnlocked;
+    public static void OnInputUnlock() { FireEvent(OnInputUnlocked); }
 
 
     public static event EventFired OnOptionsSelected;

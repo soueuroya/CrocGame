@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUIManager : BaseUIMenu
 {
     [SerializeField] Button resumeGameButton;
     [SerializeField] Button mainMenuGameButton;
-
+    [SerializeField] GameObject pause;
 
     #region Initialization
     private void OnValidate()
@@ -36,6 +33,9 @@ public class GameUIManager : BaseUIMenu
             mainMenuGameButton.onClick.RemoveAllListeners();
             mainMenuGameButton.onClick.AddListener(EventManager.OnMainMenu);
         }
+
+        EventManager.OnPauseGameSelected += PauseGame;
+        EventManager.OnResumeGameSelected += ResumeGame;
     }
 
     private void OnDestroy()
@@ -50,6 +50,18 @@ public class GameUIManager : BaseUIMenu
             mainMenuGameButton.onClick.RemoveAllListeners();
         }
 
+        EventManager.OnPauseGameSelected -= PauseGame;
+        EventManager.OnResumeGameSelected -= ResumeGame;
+    }
+
+    private void PauseGame()
+    {
+        pause.SetActive(true);
+    }
+
+    private void ResumeGame()
+    {
+        pause.SetActive(false);
     }
     #endregion Initialization
 }

@@ -118,11 +118,6 @@ public class MusicManager : MonoBehaviour
     {
         CancelInvoke();
     }
-
-    private void OnEnable()
-    {
-        
-    }
     #endregion Initialization
 
     #region Public Methods
@@ -238,7 +233,6 @@ public class MusicManager : MonoBehaviour
             Invoke("StartAgain", delayUntilNextSong); 
         });
     }
-
     
     #endregion Private Helpers
 }
