@@ -34,7 +34,8 @@ public class ObjectSpawner : MonoBehaviour
         EventManager.OnStartGameSelected += StartGame;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
-        EventManager.OnMainMenuSelected += TurnOffAllObjects;
+        EventManager.OnMainMenuSelected += FinishGame;
+        EventManager.OnGameFinished += FinishGame;
     }
 
     private void OnDestroy()
@@ -42,7 +43,8 @@ public class ObjectSpawner : MonoBehaviour
         EventManager.OnStartGameSelected -= StartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
-        EventManager.OnMainMenuSelected -= TurnOffAllObjects;
+        EventManager.OnMainMenuSelected -= FinishGame;
+        EventManager.OnGameFinished -= FinishGame;
     }
 
     private void Update()
@@ -156,6 +158,12 @@ public class ObjectSpawner : MonoBehaviour
     private void StartSpawning()
     {
         isPaused = false;
+    }
+
+    private void FinishGame()
+    {
+        isPaused = true;
+        TurnOffAllObjects();
     }
 
     private void PauseGame()

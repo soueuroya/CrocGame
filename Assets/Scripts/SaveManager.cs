@@ -37,6 +37,7 @@ public class SaveManager : MonoBehaviour
         SafePrefs.SetInt("HITS", gameStatistics.hits);
         SafePrefs.SetInt("OBSTACLES", gameStatistics.obstacles);
         SafePrefs.SetInt("JUMPS", gameStatistics.jumps);
+        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed);
         SafePrefs.Save();
     }
 
@@ -53,6 +54,7 @@ public class SaveManager : MonoBehaviour
         gameStatistics.mushrooms = SafePrefs.GetInt("MUSHROOMS");
         gameStatistics.hits = SafePrefs.GetInt("HITS");
         gameStatistics.obstacles = SafePrefs.GetInt("OBSTACLES");
+        gameStatistics.totalLifesUsed = SafePrefs.GetInt("LIFES_USED");
         return gameStatistics;
     }
 

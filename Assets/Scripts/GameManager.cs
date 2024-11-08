@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
         EventManager.OnCharacterMoved += CharacterMove;
         EventManager.OnCharacterHitten += CharacterHitten;
+        EventManager.OnGameFinished += FinishGame;
     }
 
     private void OnDestroy()
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
         EventManager.OnCharacterMoved -= CharacterMove;
         EventManager.OnCharacterHitten -= CharacterHitten;
+        EventManager.OnGameFinished -= FinishGame;
     }
 
     #endregion Initialization
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     #region Private Helpers
     private void StartGame()
     {
+        gameStatistics = new GameStatistics();
         EventManager.OnStatisticsToLoad();
     }
 
@@ -50,6 +53,10 @@ public class GameManager : MonoBehaviour
     {
 
     }
+    private void FinishGame()
+    {
+
+    }
     private void ExitGame()
     {
         EventManager.OnStatisticsSave(gameStatistics);
@@ -58,7 +65,9 @@ public class GameManager : MonoBehaviour
     private void CharacterHitten()
     {
         gameStatistics.IncrementHits();
-        
+        gameStatistics.DecrementCurrentLifes();
+
+        EventManager.OnLifesChange(gameStatistics.currentLifes);
     }
 
     private void CharacterMove(float speed)

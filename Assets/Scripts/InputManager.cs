@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
         EventManager.OnMainMenuSelected += ExitGame;
+        EventManager.OnGameFinished += FinishGame;
     }
 
     private void OnDestroy()
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= ExitGame;
+        EventManager.OnGameFinished -= FinishGame;
     }
 
     private void Update()
@@ -168,6 +170,10 @@ public class InputManager : MonoBehaviour
         isPaused = false;
     }
     private void ExitGame()
+    {
+        isStarted = false;
+    }
+    private void FinishGame()
     {
         isStarted = false;
     }

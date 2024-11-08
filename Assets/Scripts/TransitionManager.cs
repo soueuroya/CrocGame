@@ -6,7 +6,8 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] BaseUIMenu mainMenu;
     [SerializeField] BaseUIMenu gameMenu;
     [SerializeField] BaseUIMenu optionsMenu;
-    public enum Menus { Main, Game, Options }
+    [SerializeField] BaseUIMenu resultsMenu;
+    public enum Menus { Main, Game, Options, Results }
     [SerializeField] Menus currentMenu;
     private Dictionary<Menus, BaseUIMenu> menuDictionary;
 
@@ -24,6 +25,7 @@ public class TransitionManager : MonoBehaviour
         {
             { Menus.Main, mainMenu },
             { Menus.Game, gameMenu },
+            { Menus.Results, resultsMenu },
             { Menus.Options, optionsMenu }
         };
         currentMenu = Menus.Main;
@@ -32,6 +34,7 @@ public class TransitionManager : MonoBehaviour
         EventManager.OnExitGameSelected += OnExitGameSelected;
         EventManager.OnOptionsSelected += OnOptionsSelected;
         EventManager.OnMainMenuSelected += OnMainMenuSelected;
+        EventManager.OnGameFinished += OnGameFinished;
         EventManager.OnInputUnlocked += OnInputUnlocked;
     }
 
@@ -41,6 +44,7 @@ public class TransitionManager : MonoBehaviour
         EventManager.OnExitGameSelected -= OnExitGameSelected;
         EventManager.OnOptionsSelected -= OnOptionsSelected;
         EventManager.OnMainMenuSelected -= OnMainMenuSelected;
+        EventManager.OnGameFinished -= OnGameFinished;
         EventManager.OnInputUnlocked -= OnInputUnlocked;
     }
 
@@ -64,8 +68,6 @@ public class TransitionManager : MonoBehaviour
         gameMenu.gameObject.SetActive(true);
         gameMenu.Show();
         currentMenu = Menus.Game;
-
-        //Invoke("ScrollBackgroundToGame", 0.5f);
     }
 
     private void OnOptionsSelected()
@@ -80,7 +82,7 @@ public class TransitionManager : MonoBehaviour
         optionsMenu.Show();
         currentMenu = Menus.Options;
 
-        Invoke("ScrollBackgroundToGame", 0.5f);
+        Invoke("ScrollBackgroundToRight", 0.5f);
     }
 
     private void OnMainMenuSelected()
@@ -96,7 +98,20 @@ public class TransitionManager : MonoBehaviour
         mainMenu.Show();
         currentMenu = Menus.Main;
 
-        Invoke("ScrollBackgroundToMenu", 0.5f);
+        Invoke("ScrollBackgroundToLeft", 0.5f);
+    }
+
+    private void OnGameFinished()
+    {
+        inputLock = true;
+        MusicManager.Instance.StartMusic(menuMusic);
+        menuDictionary[currentMenu].Hide();
+
+        resultsMenu.gameObject.SetActive(true);
+        resultsMenu.Show();
+        currentMenu = Menus.Results;
+
+        Invoke("ScrollBackgroundToLeft", 0.5f);
     }
 
     private void OnExitGameSelected()
@@ -114,12 +129,12 @@ public class TransitionManager : MonoBehaviour
         AppHelper.Quit();
     }
 
-    private void ScrollBackgroundToGame()
+    private void ScrollBackgroundToRight()
     {
         EventManager.OnScrollForDuration(new ParallaxProperties() { duration = 2f, speed = 2f });
     }
 
-    private void ScrollBackgroundToMenu()
+    private void ScrollBackgroundToLeft()
     {
         EventManager.OnScrollForDuration(new ParallaxProperties() { duration = 2f, speed = -2f });
     }

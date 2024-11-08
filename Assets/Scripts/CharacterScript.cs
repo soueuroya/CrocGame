@@ -37,6 +37,7 @@ public class CharacterScript : MonoBehaviour
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= MainMenuSelected;
+        EventManager.OnGameFinished -= FinishGame;
     }
     private void Start()
     {
@@ -62,6 +63,7 @@ public class CharacterScript : MonoBehaviour
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
         EventManager.OnMainMenuSelected += MainMenuSelected;
+        EventManager.OnGameFinished += FinishGame;
 
         Invoke("JumpOut", 0.5f);
     }
@@ -135,6 +137,21 @@ public class CharacterScript : MonoBehaviour
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= MainMenuSelected;
+        EventManager.OnGameFinished -= FinishGame;
+
+        StopAllCoroutines();
+        isPaused = false;
+        anim.speed = 1;
+        anim.SetTrigger("Hide");
+    }
+
+    private void FinishGame()
+    {
+        EventManager.OnCharacterJumped -= Jump;
+        EventManager.OnPauseGameSelected -= PauseGame;
+        EventManager.OnResumeGameSelected -= ResumeGame;
+        EventManager.OnMainMenuSelected -= MainMenuSelected;
+        EventManager.OnGameFinished -= FinishGame;
 
         StopAllCoroutines();
         isPaused = false;

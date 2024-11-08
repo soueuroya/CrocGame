@@ -8,7 +8,7 @@ public class EventManager : MonoBehaviour
     public delegate void EventFired<T>(T payload);
 
 
-    #region Public Methods
+    #region Game Events
     public static event EventFired OnStartGameSelected;
     public static void OnGameStart() { FireEvent(OnStartGameSelected); }
 
@@ -21,7 +21,19 @@ public class EventManager : MonoBehaviour
     public static void OnGameResume() { FireEvent(OnResumeGameSelected); }
 
 
+    public static event EventFired OnGameFinished;
+    public static void OnGameFinish() { FireEvent(OnGameFinished); }
 
+
+    public static event EventFired OnInputUnlocked;
+    public static void OnInputUnlock() { FireEvent(OnInputUnlocked); }
+
+
+    public static event EventFired<int> OnLifesChanged;
+    public static void OnLifesChange(int currentLifes) { FireEvent(OnLifesChanged, currentLifes); }
+    #endregion Game Events
+
+    #region UI Events
     public static event EventFired OnStartHovered;
     public static void OnStartHover() { FireEvent(OnStartHovered); }
 
@@ -38,14 +50,20 @@ public class EventManager : MonoBehaviour
     public static void OnMainMenu() { FireEvent(OnMainMenuSelected); }
 
 
-    public static event EventFired OnInputUnlocked;
-    public static void OnInputUnlock() { FireEvent(OnInputUnlocked); }
-
-
     public static event EventFired OnOptionsSelected;
     public static void OnOptionsSelect() { FireEvent(OnOptionsSelected); }
 
 
+    public static event EventFired<PopupProperties> OnCreatedPopup;
+    public static void OnCreatePopup(PopupProperties popupProperties) { FireEvent(OnCreatedPopup, popupProperties); }
+
+
+    public static event EventFired<ParallaxProperties> OnScrolledForDuration;
+    public static void OnScrollForDuration(ParallaxProperties pp) { FireEvent(OnScrolledForDuration, pp); }
+
+    #endregion UI Events
+
+    #region Save Data Events
     public static event EventFired OnDataDeleted;
     public static void OnDataDelete() { FireEvent(OnDataDeleted); }
 
@@ -56,25 +74,6 @@ public class EventManager : MonoBehaviour
 
     public static event EventFired OnDataChanged;
     public static void OnDataChange() { FireEvent(OnDataChanged); }
-
-    
-    public static event EventFired<PopupProperties> OnCreatedPopup;
-    public static void OnCreatePopup(PopupProperties popupProperties) { FireEvent(OnCreatedPopup, popupProperties); }
-
-
-    public static event EventFired<ParallaxProperties> OnScrolledForDuration;
-    public static void OnScrollForDuration(ParallaxProperties pp) { FireEvent(OnScrolledForDuration, pp); }
-
-
-    public static event EventFired<float> OnCharacterMoved;
-    public static void OnCharacterMove(float speed) { FireEvent(OnCharacterMoved, speed); }
-
-    public static event EventFired OnCharacterJumped;
-    public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
-
-
-    public static event EventFired OnCharacterHitten;
-    public static void OnCharacterHit() { FireEvent(OnCharacterHitten); }
 
 
     public static event EventFired<GameStatistics> OnStatisticsSaved;
@@ -88,10 +87,22 @@ public class EventManager : MonoBehaviour
     public static event EventFired OnStatisticsToLoaded;
     public static void OnStatisticsToLoad() { FireEvent(OnStatisticsToLoaded); }
 
+    #endregion Save Data Events
 
-    public static event EventFired OnGameEnded;
-    public static void OnGameEnd() { FireEvent(OnGameEnded); }
-    #endregion Public Methods
+
+    #region Character Events
+
+    public static event EventFired<float> OnCharacterMoved;
+    public static void OnCharacterMove(float speed) { FireEvent(OnCharacterMoved, speed); }
+
+    public static event EventFired OnCharacterJumped;
+    public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
+
+
+    public static event EventFired OnCharacterHitten;
+    public static void OnCharacterHit() { FireEvent(OnCharacterHitten); }
+
+    #endregion Characters Events
 
 
     #region Private Helpers
