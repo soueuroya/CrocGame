@@ -8,8 +8,10 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Vector3 offset;
     [SerializeField] float speed;
+    [SerializeField] float jumpForce;
 
     bool isPaused;
+    bool isGrounded;
 
     #region Initialization
     private void OnValidate()
@@ -26,10 +28,14 @@ public class CharacterScript : MonoBehaviour
     private void Awake()
     {
         EventManager.OnStartGameSelected += StartGame;
-        
+        EventManager.OnCharacterJumped += Jump;
+        EventManager.OnPauseGameSelected += PauseGame;
+        EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += MainMenuSelected;
     }
     private void OnDestroy()
     {
+        EventManager.OnCharacterJumped -= Jump;
         EventManager.OnStartGameSelected -= StartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
@@ -49,48 +55,67 @@ public class CharacterScript : MonoBehaviour
         // Use viewport coordinates to get the bottom-left corner of the screen
         Vector3 bottomLeftWorld = Camera.main.ViewportToWorldPoint(bottomLeftScreen);
 
-        // Position the sprite's center to align with the bottom-left corner
+        // Position the sprites center to align with the bottom-left corner
         transform.position = bottomLeftWorld + offset;
     }
 
     private void StartGame()
     {
-        EventManager.OnPauseGameSelected += PauseGame;
-        EventManager.OnResumeGameSelected += ResumeGame;
-        EventManager.OnMainMenuSelected += MainMenuSelected;
-
+        Invoke("JumpOut", 0.5f);
+    }
+    private void JumpOut()
+    {
+        rb.simulated = true;
+        isPaused = false;
+        isGrounded = true;
+        PositionCharacter();
         anim.SetTrigger("Start");
         Run(speed);
     }
     private void PauseGame()
     {
         isPaused = true;
+        rb.simulated = false;
+        anim.speed = 0;
         Run(0);
     }
     private void ResumeGame()
     {
         isPaused = false;
+        rb.simulated = true;
+        anim.speed = 1;
         Run(speed);
     }
 
     private void Jump()
     {
+        if (!isGrounded)
+        { 
+            return; 
+        }
+
+        isGrounded = false;
         anim.SetTrigger("Jump");
+        Invoke("Impulse", 0.11f);
     }
-
-    private void Duck()
+    private void Impulse()
     {
-        anim.SetTrigger("Duck");
+        rb.velocity = Vector2.up * jumpForce;
     }
-
-    private void Unduck()
+    private void StrongJump()
     {
-        anim.SetTrigger("Unduck");
+        isGrounded = false;
+        anim.SetTrigger("Jump");
+        Invoke("StrongImpulse", 0.09f);
     }
-
+    private void StrongImpulse()
+    {
+        rb.velocity = Vector2.up * jumpForce * 1.3f;
+    }
     private void Hit()
     {
-        StopAllCoroutines();
+        isGrounded = false;
+        rb.velocity = Vector2.up * jumpForce/2;
         anim.SetTrigger("Hit");
     }
 
@@ -102,31 +127,19 @@ public class CharacterScript : MonoBehaviour
     }
     private void MainMenuSelected()
     {
-        EventManager.OnPauseGameSelected -= PauseGame;
-        EventManager.OnResumeGameSelected -= ResumeGame;
-        EventManager.OnMainMenuSelected -= MainMenuSelected;
-
         StopAllCoroutines();
+        isPaused = false;
+        anim.speed = 1;
         anim.SetTrigger("Hide");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                EventManager.OnGameResume();
-            }
-            else
-            {
-                EventManager.OnGamePause();
-            }
-        }
-    }
+
     private void FixedUpdate()
     {
-        if (isPaused) return;
+        if (isPaused)
+        {
+            return;
+        }
 
         anim.SetFloat("SpeedY", rb.velocity.y);
     }
@@ -135,8 +148,29 @@ public class CharacterScript : MonoBehaviour
     {
         while (true)
         {
-            EventManager.OnCharacterMoved(speed);
+            EventManager.OnCharacterMove(speed);
             yield return null;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+        else if (collision.gameObject.CompareTag("Trampoline") && collision.enabled)
+        {
+            StrongJump();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            //EventManager.OnGamePause();
+            Hit();
         }
     }
 

@@ -116,12 +116,12 @@ public class TransitionManager : MonoBehaviour
 
     private void ScrollBackgroundToGame()
     {
-        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2f, speed = 2f });
+        EventManager.OnScrollForDuration(new ParallaxProperties() { duration = 2f, speed = 2f });
     }
 
     private void ScrollBackgroundToMenu()
     {
-        EventManager.OnScrolledForDuration(new ParallaxProperties() { duration = 2f, speed = -2f });
+        EventManager.OnScrollForDuration(new ParallaxProperties() { duration = 2f, speed = -2f });
     }
 
     #endregion Private Helpers

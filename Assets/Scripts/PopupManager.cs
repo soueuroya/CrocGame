@@ -43,12 +43,12 @@ public class PopupManager : MonoBehaviour
     // Singleton start
     private void Awake()
     {
-        EventManager.OnCreatePopup += OnCreatePopup;
+        EventManager.OnCreatedPopup += OnCreatePopup;
     }
 
     private void OnDestroy()
     {
-        EventManager.OnCreatePopup -= OnCreatePopup;
+        EventManager.OnCreatedPopup -= OnCreatePopup;
     }
 
 

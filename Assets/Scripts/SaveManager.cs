@@ -17,12 +17,12 @@ public class SaveManager : MonoBehaviour
     {
         AudioManager.Instance.PlayType();
         PopupProperties popupProperties = new PopupProperties("Do you wish to delete all data?", "Delete Data", "Yes", DeleteData, "No", null);
-        EventManager.OnCreatedPopup(popupProperties);
+        EventManager.OnCreatePopup(popupProperties);
     }
 
     private void DeleteData()
     {
         SafePrefs.DeleteAll();
-        EventManager.OnDataUpdate();
+        EventManager.OnDataChange();
     }
 }

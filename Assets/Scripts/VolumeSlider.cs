@@ -24,13 +24,13 @@ public class VolumeSlider : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.OnDataUpdated -= UpdateData;
+        EventManager.OnDataChanged -= UpdateData;
         slider.onValueChanged.RemoveListener(OnVolumeChange);
     }
 
     private void Awake()
     {
-        EventManager.OnDataUpdated += UpdateData;
+        EventManager.OnDataChanged += UpdateData;
     }
 
     void Start()

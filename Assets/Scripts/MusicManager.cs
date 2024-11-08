@@ -88,25 +88,25 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-
-    private void Update()
-    {
-
-#if UNITY_EDITOR || Dev
-        if (Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftShift))
-        {
-            StartAgain();
-        }
-#endif
-
-        if (Debug.isDebugBuild)
-        {
-            if (Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftShift))
-            {
-                StartAgain();
-            }
-        }
-    }
+      //In case of further testing is needed
+    //private void Update()
+    //{
+    //
+    //#if UNITY_EDITOR || Dev
+    //    if (Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftShift))
+    //    {
+    //        StartAgain();
+    //    }
+    //#endif
+    //
+    //    if (Debug.isDebugBuild)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftShift))
+    //        {
+    //            StartAgain();
+    //        }
+    //    }
+    //}
 
 
     private void OnDestroy()

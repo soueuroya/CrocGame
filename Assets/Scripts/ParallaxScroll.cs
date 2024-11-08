@@ -17,20 +17,25 @@ public class ParallaxScroll : MonoBehaviour
     #region Initialization
     private void OnValidate()
     {
-        material = GetComponent<Image>().material;
+        if (material == null)
+        {
+            material = GetComponent<Image>().material;
+        }
+
+        currentPosition = 0;
     }
 
     private void Awake()
     {
         currentPosition = material.GetVector("_Offset").x;
-        EventManager.OnCharacterMove += MoveParallax;
-        EventManager.OnScrollForDuration += ScrollForDuration;
+        EventManager.OnCharacterMoved += MoveParallax;
+        EventManager.OnScrolledForDuration += ScrollForDuration;
     }
 
     private void OnDestroy()
     {
-        EventManager.OnCharacterMove -= MoveParallax;
-        EventManager.OnScrollForDuration -= ScrollForDuration;
+        EventManager.OnCharacterMoved -= MoveParallax;
+        EventManager.OnScrolledForDuration -= ScrollForDuration;
     }
     #endregion Initialization
 

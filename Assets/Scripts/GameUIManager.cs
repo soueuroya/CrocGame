@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GameUIManager : BaseUIMenu
 {
     [SerializeField] Button resumeGameButton;
+    [SerializeField] Button pauseGameButton;
     [SerializeField] Button mainMenuGameButton;
     [SerializeField] GameObject pause;
 
@@ -11,20 +12,26 @@ public class GameUIManager : BaseUIMenu
     private void OnValidate()
     {
         if (resumeGameButton == null)
-        resumeGameButton = GameObject.Find("ResumeButton")?.GetComponent<Button>();
+            resumeGameButton = GameObject.Find("ResumeButton")?.GetComponent<Button>();
+
+        if (pauseGameButton == null)
+            pauseGameButton = GameObject.Find("PauseButton")?.GetComponent<Button>();
 
         if (mainMenuGameButton == null)
-        mainMenuGameButton = GameObject.Find("MainMenuButton_Game")?.GetComponent<Button>();
+            mainMenuGameButton = GameObject.Find("MainMenuButton_Game")?.GetComponent<Button>();
     }
     private void Awake()
     {
-        anim.Play("GameHidden", 0, 0f);
         if (resumeGameButton != null)
         {
             resumeGameButton.onClick.RemoveAllListeners();
             resumeGameButton.onClick.AddListener(EventManager.OnGameResume);
+        }
 
-            // TODO // Unpause game
+        if (pauseGameButton != null)
+        {
+            pauseGameButton.onClick.RemoveAllListeners();
+            pauseGameButton.onClick.AddListener(EventManager.OnGamePause);
         }
 
 
@@ -36,6 +43,7 @@ public class GameUIManager : BaseUIMenu
 
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += MainMenuSelected;
     }
 
     private void OnDestroy()
@@ -52,14 +60,40 @@ public class GameUIManager : BaseUIMenu
 
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
+        EventManager.OnMainMenuSelected -= MainMenuSelected;
     }
-
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            EventManager.OnGamePause();
+        }
+        else
+        {
+            EventManager.OnGameResume();
+        }
+    }
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            EventManager.OnGamePause();
+        }
+        else
+        {
+            //EventManager.OnGameResume(); // don't auto resume game for now
+        }
+    }
     private void PauseGame()
     {
         pause.SetActive(true);
     }
 
     private void ResumeGame()
+    {
+        pause.SetActive(false);
+    }
+    private void MainMenuSelected()
     {
         pause.SetActive(false);
     }

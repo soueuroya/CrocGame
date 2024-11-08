@@ -21,6 +21,7 @@ public class EventManager : MonoBehaviour
     public static void OnGameResume() { FireEvent(OnResumeGameSelected); }
 
 
+
     public static event EventFired OnStartHovered;
     public static void OnStartHover() { FireEvent(OnStartHovered); }
 
@@ -53,22 +54,23 @@ public class EventManager : MonoBehaviour
     public static void OnDataSave() { FireEvent(OnDataSaved); }
 
 
-    public static event EventFired OnDataUpdated;
-    public static void OnDataUpdate() { FireEvent(OnDataUpdated); }
+    public static event EventFired OnDataChanged;
+    public static void OnDataChange() { FireEvent(OnDataChanged); }
+
     
-    
-    public static event EventFired<PopupProperties> OnCreatePopup;
-    public static void OnCreatedPopup(PopupProperties popupProperties) { FireEvent(OnCreatePopup, popupProperties); }
+    public static event EventFired<PopupProperties> OnCreatedPopup;
+    public static void OnCreatePopup(PopupProperties popupProperties) { FireEvent(OnCreatedPopup, popupProperties); }
 
 
-
-    public static event EventFired<ParallaxProperties> OnScrollForDuration;
-    public static void OnScrolledForDuration(ParallaxProperties pp) { FireEvent(OnScrollForDuration, pp); }
-
+    public static event EventFired<ParallaxProperties> OnScrolledForDuration;
+    public static void OnScrollForDuration(ParallaxProperties pp) { FireEvent(OnScrolledForDuration, pp); }
 
 
-    public static event EventFired<float> OnCharacterMove;
-    public static void OnCharacterMoved(float speed) { FireEvent(OnCharacterMove, speed); }
+    public static event EventFired<float> OnCharacterMoved;
+    public static void OnCharacterMove(float speed) { FireEvent(OnCharacterMoved, speed); }
+
+    public static event EventFired OnCharacterJumped;
+    public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
 
 
     public static event EventFired OnGameEnded;
