@@ -13,6 +13,10 @@ public class EventManager : MonoBehaviour
     public static void OnGameStart() { FireEvent(OnStartGameSelected); }
 
 
+    public static event EventFired OnRestartGameSelected;
+    public static void OnGameRestart() { FireEvent(OnRestartGameSelected); }
+
+
     public static event EventFired OnPauseGameSelected;
     public static void OnGamePause() { FireEvent(OnPauseGameSelected); }
 
@@ -106,8 +110,12 @@ public class EventManager : MonoBehaviour
     
     public static event EventFired OnCharacterJumped;
     public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
-    
-    
+
+
+    public static event EventFired OnCharacterJumpedCount;
+    public static void OnCharacterJumpCount() { FireEvent(OnCharacterJumpedCount); }
+
+
     public static event EventFired OnCharacterTrampolined;
     public static void OnCharacterTrampoline() { FireEvent(OnCharacterTrampolined); }
 

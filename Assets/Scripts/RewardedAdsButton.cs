@@ -20,6 +20,13 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         // Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
+
+        //EventManager.OnStartGameSelected += LoadAd;
+    }
+
+    private void OnEnable()
+    {
+        LoadAd();
     }
 
     // Call this public method when you want to get an ad ready to show.
@@ -60,6 +67,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
+
+            EventManager.OnGameRestart();
         }
     }
 
@@ -81,6 +90,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     void OnDestroy()
     {
+        //EventManager.OnStartGameSelected -= LoadAd;
+
         // Clean up the button listeners:
         _showAdButton.onClick.RemoveAllListeners();
     }

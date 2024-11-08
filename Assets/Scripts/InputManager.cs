@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     {
         isPaused = true;
         EventManager.OnStartGameSelected += StartGame;
+        EventManager.OnRestartGameSelected += RestartGame;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
         EventManager.OnMainMenuSelected += ExitGame;
@@ -26,6 +27,7 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.OnStartGameSelected -= StartGame;
+        EventManager.OnRestartGameSelected -= RestartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= ExitGame;
@@ -150,6 +152,11 @@ public class InputManager : MonoBehaviour
 
     #region Private Helpers
     private void StartGame()
+    {
+        Invoke("StartInput", 1.5f);
+    }
+
+    private void RestartGame()
     {
         Invoke("StartInput", 1.5f);
     }

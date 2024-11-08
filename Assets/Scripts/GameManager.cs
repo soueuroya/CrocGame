@@ -9,18 +9,20 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         EventManager.OnStartGameSelected += StartGame;
+        EventManager.OnRestartGameSelected += RestartGame;
     }
 
     private void OnDestroy()
     {
         EventManager.OnStartGameSelected -= StartGame;
+        EventManager.OnRestartGameSelected -= RestartGame;
 
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= ExitGame;
-        EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
+        EventManager.OnStatisticsLoaded -= OnStatisticsLoaded;
         EventManager.OnCharacterMoved -= CharacterMove;
-        EventManager.OnCharacterJumped -= CharacterJump;
+        EventManager.OnCharacterJumpedCount -= CharacterJump;
         EventManager.OnCharacterTrampolined -= OnCharacterTrampoline;
         EventManager.OnCharacterHitten -= CharacterHit;
         EventManager.OnGameFinished -= FinishGame;
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnMainMenuSelected += ExitGame;
         EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
         EventManager.OnCharacterMoved += CharacterMove;
-        EventManager.OnCharacterJumped += CharacterJump;
+        EventManager.OnCharacterJumpedCount += CharacterJump;
         EventManager.OnCharacterTrampolined += OnCharacterTrampoline;
         EventManager.OnCharacterHitten += CharacterHit;
         EventManager.OnGameFinished += FinishGame;
@@ -49,6 +51,12 @@ public class GameManager : MonoBehaviour
     private void OnStatisticsLoaded(GameStatistics _gameStatistics)
     {
         gameStatistics = _gameStatistics;
+    }
+
+    private void RestartGame()
+    {
+        gameStatistics.currentLifes = 3;
+        EventManager.OnLifesChange(gameStatistics.currentLifes);
     }
 
     private void PauseGame()
@@ -69,7 +77,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= ExitGame;
-        EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
+        EventManager.OnStatisticsLoaded -= OnStatisticsLoaded;
         EventManager.OnCharacterMoved -= CharacterMove;
         EventManager.OnCharacterJumped -= CharacterJump;
         EventManager.OnCharacterTrampolined -= OnCharacterTrampoline;

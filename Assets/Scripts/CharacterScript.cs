@@ -33,6 +33,7 @@ public class CharacterScript : MonoBehaviour
     {
         EventManager.OnStartGameSelected -= StartGame;
 
+        EventManager.OnRestartGameSelected -= RestartGame;
         EventManager.OnCharacterJumped -= Jump;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
@@ -59,6 +60,18 @@ public class CharacterScript : MonoBehaviour
 
     private void StartGame()
     {
+        EventManager.OnRestartGameSelected += RestartGame;
+        EventManager.OnCharacterJumped += Jump;
+        EventManager.OnPauseGameSelected += PauseGame;
+        EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += MainMenuSelected;
+        EventManager.OnGameFinished += FinishGame;
+
+        Invoke("JumpOut", 0.5f);
+    }
+    private void RestartGame()
+    {
+        EventManager.OnRestartGameSelected += RestartGame;
         EventManager.OnCharacterJumped += Jump;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
@@ -101,6 +114,7 @@ public class CharacterScript : MonoBehaviour
         isGrounded = false;
         anim.SetTrigger("Jump");
         Invoke("Impulse", 0.11f);
+        EventManager.OnCharacterJumpCount();
     }
     private void Impulse()
     {
@@ -134,6 +148,7 @@ public class CharacterScript : MonoBehaviour
     }
     private void MainMenuSelected()
     {
+        EventManager.OnRestartGameSelected -= RestartGame;
         EventManager.OnCharacterJumped -= Jump;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;

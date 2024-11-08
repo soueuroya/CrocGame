@@ -31,6 +31,7 @@ public class TransitionManager : MonoBehaviour
         currentMenu = Menus.Main;
 
         EventManager.OnStartGameSelected += OnStartGameSelected;
+        EventManager.OnRestartGameSelected += OnRestartGameSelected;
         EventManager.OnExitGameSelected += OnExitGameSelected;
         EventManager.OnOptionsSelected += OnOptionsSelected;
         EventManager.OnMainMenuSelected += OnMainMenuSelected;
@@ -41,6 +42,7 @@ public class TransitionManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.OnStartGameSelected -= OnStartGameSelected;
+        EventManager.OnRestartGameSelected -= OnRestartGameSelected;
         EventManager.OnExitGameSelected -= OnExitGameSelected;
         EventManager.OnOptionsSelected -= OnOptionsSelected;
         EventManager.OnMainMenuSelected -= OnMainMenuSelected;
@@ -57,6 +59,20 @@ public class TransitionManager : MonoBehaviour
     }
 
     private void OnStartGameSelected()
+    {
+        if (inputLock) return;
+        inputLock = true;
+
+        AudioManager.Instance.PlayType();
+        MusicManager.Instance.StartMusic(gameMusic);
+
+        menuDictionary[currentMenu].Hide();
+        gameMenu.gameObject.SetActive(true);
+        gameMenu.Show();
+        currentMenu = Menus.Game;
+    }
+
+    private void OnRestartGameSelected()
     {
         if (inputLock) return;
         inputLock = true;

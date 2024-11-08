@@ -32,6 +32,7 @@ public class ObjectSpawner : MonoBehaviour
     private void Awake()
     {
         EventManager.OnStartGameSelected += StartGame;
+        EventManager.OnRestartGameSelected += RestartGame;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
         EventManager.OnMainMenuSelected += FinishGame;
@@ -41,6 +42,7 @@ public class ObjectSpawner : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.OnStartGameSelected -= StartGame;
+        EventManager.OnRestartGameSelected -= RestartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= FinishGame;
@@ -151,6 +153,11 @@ public class ObjectSpawner : MonoBehaviour
 
     #region Game State Management
     private void StartGame()
+    {
+        Invoke("StartSpawning", 2.5f);
+    }
+
+    private void RestartGame()
     {
         Invoke("StartSpawning", 2.5f);
     }
