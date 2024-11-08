@@ -31,6 +31,10 @@ public class EventManager : MonoBehaviour
 
     public static event EventFired<int> OnLifesChanged;
     public static void OnLifesChange(int currentLifes) { FireEvent(OnLifesChanged, currentLifes); }
+
+
+    public static event EventFired<int> OnScoreChanged;
+    public static void OnScoreChange(int currentScore) { FireEvent(OnScoreChanged, currentScore); }
     #endregion Game Events
 
     #region UI Events
@@ -76,6 +80,10 @@ public class EventManager : MonoBehaviour
     public static void OnDataChange() { FireEvent(OnDataChanged); }
 
 
+    public static event EventFired<GameStatistics> OnStatisticsResulted;
+    public static void OnStatisticsResult(GameStatistics gameStatistics) { FireEvent(OnStatisticsResulted, gameStatistics); }
+
+
     public static event EventFired<GameStatistics> OnStatisticsSaved;
     public static void OnStatisticsSave(GameStatistics gameStatistics) { FireEvent(OnStatisticsSaved, gameStatistics); }
 
@@ -95,8 +103,13 @@ public class EventManager : MonoBehaviour
     public static event EventFired<float> OnCharacterMoved;
     public static void OnCharacterMove(float speed) { FireEvent(OnCharacterMoved, speed); }
 
+    
     public static event EventFired OnCharacterJumped;
     public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
+    
+    
+    public static event EventFired OnCharacterTrampolined;
+    public static void OnCharacterTrampoline() { FireEvent(OnCharacterTrampolined); }
 
 
     public static event EventFired OnCharacterHitten;

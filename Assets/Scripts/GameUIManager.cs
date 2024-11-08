@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUIManager : BaseUIMenu
@@ -7,6 +8,7 @@ public class GameUIManager : BaseUIMenu
     [SerializeField] Button pauseGameButton;
     [SerializeField] Button mainMenuGameButton;
     [SerializeField] GameObject pause;
+    [SerializeField] TextMeshProUGUI scoreLabel;
 
     #region Initialization
     private void OnValidate()
@@ -41,6 +43,7 @@ public class GameUIManager : BaseUIMenu
             mainMenuGameButton.onClick.AddListener(EventManager.OnMainMenu);
         }
 
+        EventManager.OnScoreChanged += ScoreChanged;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
         EventManager.OnMainMenuSelected += MainMenuSelected;
@@ -58,6 +61,7 @@ public class GameUIManager : BaseUIMenu
             mainMenuGameButton.onClick.RemoveAllListeners();
         }
 
+        EventManager.OnScoreChanged -= ScoreChanged;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= MainMenuSelected;
@@ -96,6 +100,11 @@ public class GameUIManager : BaseUIMenu
     private void MainMenuSelected()
     {
         pause.SetActive(false);
+    }
+
+    private void ScoreChanged(int currentScore)
+    {
+        scoreLabel.text = currentScore + "M";
     }
     #endregion Initialization
 }

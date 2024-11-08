@@ -32,12 +32,12 @@ public class SaveManager : MonoBehaviour
 
     private void OnStatisticsSaved(GameStatistics gameStatistics)
     {
-        SafePrefs.SetFloat("SCORE", gameStatistics.score);
-        SafePrefs.SetInt("MUSHROOMS", gameStatistics.mushrooms);
-        SafePrefs.SetInt("HITS", gameStatistics.hits);
-        SafePrefs.SetInt("OBSTACLES", gameStatistics.obstacles);
-        SafePrefs.SetInt("JUMPS", gameStatistics.jumps);
-        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed);
+        SafePrefs.SetFloat("SCORE", gameStatistics.totalScore + gameStatistics.currentScore);
+        SafePrefs.SetInt("MUSHROOMS", gameStatistics.totalMushrooms + gameStatistics.currentMushrooms);
+        //SafePrefs.SetInt("HITS", gameStatistics.totalHits + gameStatistics.currentHits);
+        //SafePrefs.SetInt("OBSTACLES", gameStatistics.totalObstacles);
+        SafePrefs.SetInt("JUMPS", gameStatistics.totalJumps + gameStatistics.currentJumps);
+        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed + (3-gameStatistics.currentLifes));
         SafePrefs.Save();
     }
 
@@ -49,11 +49,11 @@ public class SaveManager : MonoBehaviour
     private GameStatistics LoadGameStatistics()
     {
         GameStatistics gameStatistics = new GameStatistics();
-        gameStatistics.score = SafePrefs.GetFloat("SCORE");
-        gameStatistics.jumps = SafePrefs.GetInt("JUMPS");
-        gameStatistics.mushrooms = SafePrefs.GetInt("MUSHROOMS");
-        gameStatistics.hits = SafePrefs.GetInt("HITS");
-        gameStatistics.obstacles = SafePrefs.GetInt("OBSTACLES");
+        gameStatistics.totalScore = SafePrefs.GetFloat("SCORE");
+        gameStatistics.totalJumps = SafePrefs.GetInt("JUMPS");
+        gameStatistics.totalMushrooms = SafePrefs.GetInt("MUSHROOMS");
+        //gameStatistics.totalHits = SafePrefs.GetInt("HITS");
+        //gameStatistics.totalObstacles = SafePrefs.GetInt("OBSTACLES");
         gameStatistics.totalLifesUsed = SafePrefs.GetInt("LIFES_USED");
         return gameStatistics;
     }

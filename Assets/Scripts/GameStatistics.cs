@@ -1,36 +1,42 @@
 ﻿public class GameStatistics
 {
-    public float score = 0;
-    public int mushrooms = 0;
-    public int jumps = 0;
-    public int hits = 0;
-    public int obstacles = 0;
+    public float currentScore = 0;
+    public int currentMushrooms = 0;
+    public int currentJumps = 0;
+    public int currentHits = 0;
+    public int currentObstacles = 0;
     public int currentLifes = 3;
+
+    public float totalScore = 0;
+    public int totalMushrooms = 0;
+    public int totalJumps = 0;
+    public int totalHits = 0;
+    public int totalObstacles = 0;
     public int totalLifesUsed = 0;
 
     public void IncrementMushrooms()
     {
-        mushrooms++;
+        currentMushrooms++;
     }
 
     public void IncrementJumps()
     {
-        jumps++;
+        currentJumps++;
     }
 
     public void IncrementHits()
     {
-        hits++;
+        currentHits++;
     }
 
-    public void IncrementObstacles()
-    {
-        obstacles++;
-    }
+    //public void IncrementObstacles()
+    //{
+    //    obstacles++;
+    //}
 
     public void IncrementScore(float increment)
     {
-        score += increment;
+        currentScore += increment;
     }
 
     public void IncrementLifesUsed()

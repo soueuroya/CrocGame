@@ -111,6 +111,7 @@ public class CharacterScript : MonoBehaviour
         isGrounded = false;
         anim.SetTrigger("Jump");
         Invoke("StrongImpulse", 0.09f);
+        EventManager.OnCharacterTrampoline();
     }
     private void StrongImpulse()
     {
@@ -140,7 +141,7 @@ public class CharacterScript : MonoBehaviour
         EventManager.OnGameFinished -= FinishGame;
 
         StopAllCoroutines();
-        isPaused = false;
+        isPaused = true;
         anim.speed = 1;
         anim.SetTrigger("Hide");
     }
@@ -154,7 +155,7 @@ public class CharacterScript : MonoBehaviour
         EventManager.OnGameFinished -= FinishGame;
 
         StopAllCoroutines();
-        isPaused = false;
+        isPaused = true;
         anim.speed = 1;
         anim.SetTrigger("Hide");
     }
