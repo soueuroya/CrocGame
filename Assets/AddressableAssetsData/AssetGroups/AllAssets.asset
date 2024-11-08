@@ -1,0 +1,337 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: AllAssets
+  m_EditorClassIdentifier: 
+  m_GroupName: AllAssets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 28ac7d14489f08d48966d6775ed2ea28
+  m_SerializeEntries:
+  - m_GUID: fe744f9c4ff8aa040871c33ad736cf78
+    m_Address: Assets/Sprites/Cenario/BG.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0eeb5fb97ab4da24ab2f4f34f23ff045
+    m_Address: Assets/Sprites/Cenario/BackgroundMaterial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05e1de06878fec242bccb79d0c4db76e
+    m_Address: Assets/Sprites/Cenario/Ground.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c94dac4db41f4304da38d1293046a630
+    m_Address: Assets/Sprites/Cenario/Tiles/2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c757bb74f272284d98ac874f4943d77
+    m_Address: Assets/Sprites/Cenario/Tiles/14.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0bff89a232d8a7046bd68abccf5574e0
+    m_Address: Assets/Sprites/Cenario/Tiles/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1626fb77e420a74469ec8b9141982dd6
+    m_Address: Assets/Sprites/Cenario/Tiles/3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff4228593ffe5c9478a4403ccdb7ca20
+    m_Address: Assets/Sprites/Cenario/Tiles/4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4d0e7394244b4f74095405d6cc3f1ad6
+    m_Address: Assets/Sprites/Cenario/Tiles/5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 770a979fbf979a349b5f56bc4c895aab
+    m_Address: Assets/Sprites/Cenario/Tiles/6.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cce9edf4f5572aa47b0b7471d9a732be
+    m_Address: Assets/Sprites/Cenario/Tiles/7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36658bf6c6ce61048acd63a766f29e6c
+    m_Address: Assets/Sprites/Cenario/Tiles/8.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b1a7fe72fb3e1f1448cbc8be64cfb771
+    m_Address: Assets/Sprites/Cenario/Tiles/9.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c9944226de4e624792c21d928c2c7c9
+    m_Address: Assets/Sprites/Cenario/Tiles/10.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cce43de375ddf25469fec9a421715b3a
+    m_Address: Assets/Sprites/Cenario/Tiles/11.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8863acd50fb861e4da9ee3fdc06c77fe
+    m_Address: Assets/Sprites/Cenario/Tiles/12.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c4f8c78ee3c5de24cad257bcbb532724
+    m_Address: Assets/Sprites/Cenario/Tiles/13.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e9a732849a21d2d41bf6aab71ebb41fe
+    m_Address: Assets/Sprites/Cenario/Tiles/15.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 067ee706fc4dea54fac2788fb31ac16f
+    m_Address: Assets/Sprites/Cenario/Tiles/16.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4b0dc133ca1998a4c9366881ecfd0784
+    m_Address: Assets/Sprites/Cenario/Tiles/17.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 270b3b314539ef14ab6def061b8e7c6c
+    m_Address: Assets/Sprites/Cenario/Tiles/18.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62ff23d49c4c46043b62b3e23198b4ba
+    m_Address: Assets/Sprites/Cenario/Tiles/Plataforma.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50e52001bba669542a16aee83fd09a89
+    m_Address: Assets/Sprites/Cenario/Props/Stone.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ce70630e1658b34cb4b81624ca135c3
+    m_Address: Assets/Sprites/Cenario/Props/Mushroom_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44f16c0871ca2ed4fb37ed9ec6261033
+    m_Address: Assets/Sprites/Cenario/Props/Tree_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: efbf95cc646f8e44fa3ee63cba3ad23b
+    m_Address: Assets/Sprites/Cenario/Props/Mushroom_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b1a89b76917377468ec80f24aefcff3
+    m_Address: Assets/Sprites/Cenario/Props/Tree_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b70aad3c494950c40b9a2411779b3eed
+    m_Address: Assets/Sprites/Cenario/Props/Sign_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce8eb8c57eefbdb4a8564e028afc764d
+    m_Address: Assets/Sprites/Cenario/Props/Sign_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 449d16211e3687d4e8028b1f08e99194
+    m_Address: Assets/Sprites/Cenario/Props/Bush (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0aa6a6e2d201f994c85fe798d81a4d4e
+    m_Address: Assets/Sprites/Cenario/Props/Crate.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 771de48063c9e024ab8b5e29cd8cbd5d
+    m_Address: Assets/Sprites/Cenario/Props/Tree_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a87ae17eaf4c9294795464075e3e5312
+    m_Address: Assets/Sprites/Cenario/Props/Bush (2).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea27d8744efed5c4fa9345ccc3f9a9cf
+    m_Address: Assets/Sprites/Cenario/Props/Bush (3).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 297d545f37feefd40969513b7ad7b089
+    m_Address: Assets/Sprites/Cenario/Props/Bush (4).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef7be419aafc85c438e1153f96fe135a
+    m_Address: Assets/Sprites/Character/Run (7).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 816d985e1999ad541a1cd427bea06ae5
+    m_Address: Assets/Sprites/Character/Idle (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 191da48a2fc1ec04f92dc55d4dcbd665
+    m_Address: Assets/Sprites/Character/Jump (4).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb28252c56fa84d45825d39cec4cb791
+    m_Address: Assets/Sprites/Character/Idle (2).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3f75fda072622d46b8f30a18dbcedc0
+    m_Address: Assets/Sprites/Character/Idle (3).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bfa762e6948a7614f84e0a686a2d0bc4
+    m_Address: Assets/Sprites/Character/Idle (4).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 972e0f0006570f24c8290ed4cefd0af5
+    m_Address: Assets/Sprites/Character/Idle (5).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1d8cd307c4a4774faff0b721e028a57
+    m_Address: Assets/Sprites/Character/Idle (6).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 649c506b5e327a940942d388deb64c1d
+    m_Address: Assets/Sprites/Character/Idle (7).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ed409f283b6597438cb5de1fa138b29
+    m_Address: Assets/Sprites/Character/Idle (8).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70e931b8629dfbc4485a884e189821a3
+    m_Address: Assets/Sprites/Character/Idle (9).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21567796fcb6b0f428104b488e1d0c50
+    m_Address: Assets/Sprites/Character/Idle (10).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4930358462c85df45be8d697b69d2b07
+    m_Address: Assets/Sprites/Character/Jump (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bcc205d446957274db2ec4a7e8a5e30d
+    m_Address: Assets/Sprites/Character/Jump (2).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a4b6772db627a5e46a8949169f35bae7
+    m_Address: Assets/Sprites/Character/Jump (3).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3cab4b0ca4440a042a72ddb6123e8b8a
+    m_Address: Assets/Sprites/Character/Jump (5).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 77281d1ce8078c545bca0a08f379c3fa
+    m_Address: Assets/Sprites/Character/Jump (6).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8168aa54b2416fd4799b908357634734
+    m_Address: Assets/Sprites/Character/Jump (7).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8dc277fe251d643488b56c7841c93363
+    m_Address: Assets/Sprites/Character/Jump (8).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52cf9ca8538e6d64d96e77597321d036
+    m_Address: Assets/Sprites/Character/Jump (9).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5301261db5fe102439c3936f5b3ff668
+    m_Address: Assets/Sprites/Character/Jump (10).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 736b1e76ed3b8eb47a88395cdd8ad5c3
+    m_Address: Assets/Sprites/Character/Jump (11).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e0f1eeb9ca69a234e9e38fe346ca962d
+    m_Address: Assets/Sprites/Character/Jump (12).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ea7f04c20ca0cc4bbddd3691258e2e8
+    m_Address: Assets/Sprites/Character/Run (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7caab680efe6f9449ae443f32c723d90
+    m_Address: Assets/Sprites/Character/Run (2).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0f35b242b3a6b2a48aa03ca927561a37
+    m_Address: Assets/Sprites/Character/Run (3).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 735773ee318288949942ab3f7cc07353
+    m_Address: Assets/Sprites/Character/Run (4).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 296a64e5504c13d4eb90a987e0a445e5
+    m_Address: Assets/Sprites/Character/Run (5).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05ee5ef3cf707664bbf275798fc7e704
+    m_Address: Assets/Sprites/Character/Run (6).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad4c87103d193254a98c40445d1da376
+    m_Address: Assets/Sprites/Character/Run (8).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11e1ad945b64b6c42b410a0522d898f0
+    m_Address: Assets/Sprites/Character/Walk (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 488a90de0a6fe5b4abd4fb27cc82aed6
+    m_Address: Assets/Sprites/Character/Walk (2).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bd1e5acaa94bf643a972acb5fb65d55
+    m_Address: Assets/Sprites/Character/Walk (3).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 53e266377b9ab7e45964fd5174814c2d
+    m_Address: Assets/Sprites/Character/Walk (4).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4306ec4c3986b9c48be269053cf52082
+    m_Address: Assets/Sprites/Character/Walk (5).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0ddccb5f5a14c2b478e04f07007fd563
+    m_Address: Assets/Sprites/Character/Walk (6).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 801d08cba2232584bbd7c28fc0a69df7
+    m_Address: Assets/Sprites/Character/Walk (7).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f2d8f5ff6839c7446a715146627ac420
+    m_Address: Assets/Sprites/Character/Walk (8).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7523b11a5a0ea7a42ac525c4ede1806f
+    m_Address: Assets/Sprites/Character/Walk (9).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00e477fd5b6e1e24aa4ca487a881d98e
+    m_Address: Assets/Sprites/Character/Walk (10).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6f167fcb953bd394f99a8a6d61119f42
+    m_Address: Assets/Audio/Typing.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 80f2434c6ec38a040a52b17d0c01187e
+    m_Address: Assets/Audio/MenuLoop.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c04d737ac02d07a4cbee9d68b47d25a8
+    m_Address: Assets/Audio/GameLoop.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 216325279371f0645bee174372d65ea4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 04b57ec32490f4c45a5b8483e3c2e7f0, type: 2}
+    - {fileID: 11400000, guid: cc301303bbd15fa4a9b20477299e3371, type: 2}
