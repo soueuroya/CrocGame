@@ -1,4 +1,7 @@
-﻿public class GameStatistics
+﻿using System.Collections.Generic;
+//using UnityEngine.Analytics;
+
+public class GameStatistics
 {
     public float currentScore = 0;
     public int currentMushrooms = 0;
@@ -49,6 +52,7 @@
         currentLifes--;
         if (currentLifes <= 0)
         {
+            //AnalyticsResult analyticsResult = Analytics.CustomEvent("Game Over", new Dictionary<string, object> {{ "Score", currentScore }});
             EventManager.OnGameFinish();
         }
     }

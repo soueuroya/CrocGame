@@ -16,6 +16,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = _iOSAdUnitId;
 #elif UNITY_ANDROID
         _adUnitId = _androidAdUnitId;
+#else
+        _adUnitId = _androidAdUnitId; // for testing
 #endif
 
         // Disable the button until the ad is ready to show:

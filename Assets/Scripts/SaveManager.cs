@@ -33,11 +33,11 @@ public class SaveManager : MonoBehaviour
     private void OnStatisticsSaved(GameStatistics gameStatistics)
     {
         SafePrefs.SetFloat("SCORE", gameStatistics.totalScore + gameStatistics.currentScore);
+        SafePrefs.SetInt("JUMPS", gameStatistics.totalJumps + gameStatistics.currentJumps);
         SafePrefs.SetInt("MUSHROOMS", gameStatistics.totalMushrooms + gameStatistics.currentMushrooms);
+        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed + (3-gameStatistics.currentLifes));
         //SafePrefs.SetInt("HITS", gameStatistics.totalHits + gameStatistics.currentHits);
         //SafePrefs.SetInt("OBSTACLES", gameStatistics.totalObstacles);
-        SafePrefs.SetInt("JUMPS", gameStatistics.totalJumps + gameStatistics.currentJumps);
-        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed + (3-gameStatistics.currentLifes));
         SafePrefs.Save();
     }
 
@@ -52,9 +52,9 @@ public class SaveManager : MonoBehaviour
         gameStatistics.totalScore = SafePrefs.GetFloat("SCORE");
         gameStatistics.totalJumps = SafePrefs.GetInt("JUMPS");
         gameStatistics.totalMushrooms = SafePrefs.GetInt("MUSHROOMS");
+        gameStatistics.totalLifesUsed = SafePrefs.GetInt("LIFES_USED");
         //gameStatistics.totalHits = SafePrefs.GetInt("HITS");
         //gameStatistics.totalObstacles = SafePrefs.GetInt("OBSTACLES");
-        gameStatistics.totalLifesUsed = SafePrefs.GetInt("LIFES_USED");
         return gameStatistics;
     }
 

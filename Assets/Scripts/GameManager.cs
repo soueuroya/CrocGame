@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         EventManager.OnMainMenuSelected -= ExitGame;
         EventManager.OnStatisticsLoaded -= OnStatisticsLoaded;
         EventManager.OnCharacterMoved -= CharacterMove;
-        EventManager.OnCharacterJumped -= CharacterJump;
+        EventManager.OnCharacterJumpedCount -= CharacterJump;
         EventManager.OnCharacterTrampolined -= OnCharacterTrampoline;
         EventManager.OnCharacterHitten -= CharacterHit;
         EventManager.OnGameFinished -= FinishGame;

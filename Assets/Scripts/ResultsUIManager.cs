@@ -1,6 +1,10 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Unity.Services.Analytics;
+//using UnityEngine.Analytics;
 using UnityEngine.UI;
+using Unity.Services.Core;
 
 public class ResultsUIManager : BaseUIMenu
 {
@@ -12,6 +16,8 @@ public class ResultsUIManager : BaseUIMenu
     [SerializeField] TextMeshProUGUI totalDistance;
     [SerializeField] TextMeshProUGUI totalJumps;
     [SerializeField] TextMeshProUGUI totalMushrooms;
+
+    int currentDistance;
 
     #region Initialization
     private void OnValidate()
@@ -28,9 +34,14 @@ public class ResultsUIManager : BaseUIMenu
         }
 
         EventManager.OnMainMenuSelected += MainMenuSelected;
+        EventManager.OnRestartGameSelected += GameRestarted;
         EventManager.OnStatisticsResulted += OnStatisticsResulted;
     }
-
+    async void Start()
+    {
+        await UnityServices.InitializeAsync();
+        await AnalyticsService.Instance.SetAnalyticsEnabled(true);
+    }
     private void OnDestroy()
     {
         if (mainMenuGameButton != null)
@@ -39,17 +50,20 @@ public class ResultsUIManager : BaseUIMenu
         }
 
         EventManager.OnMainMenuSelected -= MainMenuSelected;
+        EventManager.OnRestartGameSelected -= GameRestarted;
         EventManager.OnStatisticsResulted -= OnStatisticsResulted;
     }
     
     private void MainMenuSelected()
     {
-
+        //AnalyticsResult analyticsResult = Analytics.CustomEvent("Returned to Menu", new Dictionary<string, object> { { "Score", currentDistance } });
+        AnalyticsService.Instance.RecordInternalEvent(new Unity.Services.Analytics.Internal.Event("Returned to Menu", 0));
     }
 
     private void OnStatisticsResulted(GameStatistics gameStatistics)
     {
-        distance.text = ((int)gameStatistics.currentScore) + "M";
+        currentDistance = (int)gameStatistics.currentScore;
+        distance.text = currentDistance + "M";
         jumps.text = gameStatistics.currentJumps.ToString();
         mushrooms.text = gameStatistics.currentMushrooms.ToString();
 
@@ -57,6 +71,10 @@ public class ResultsUIManager : BaseUIMenu
         totalJumps.text = (gameStatistics.currentJumps + gameStatistics.totalJumps).ToString();
         totalMushrooms.text = (gameStatistics.currentMushrooms + gameStatistics.totalMushrooms).ToString();
     }
+    private void GameRestarted()
+    {
+        //AnalyticsResult analyticsResult = Analytics.CustomEvent("Game restarted", new Dictionary<string, object> { { "Score", currentDistance } });
+        AnalyticsService.Instance.RecordInternalEvent(new Unity.Services.Analytics.Internal.Event("Game restarted", 0));
+    }
     #endregion Initialization
 }
-
