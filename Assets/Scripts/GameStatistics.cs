@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-//using UnityEngine.Analytics;
+using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GameStatistics
 {
@@ -52,7 +53,8 @@ public class GameStatistics
         currentLifes--;
         if (currentLifes <= 0)
         {
-            //AnalyticsResult analyticsResult = Analytics.CustomEvent("Game Over", new Dictionary<string, object> {{ "Score", currentScore }});
+            AnalyticsResult analyticsResult = Analytics.CustomEvent("gameOver", new Dictionary<string, object> { { "Score", currentScore } });
+            Debug.Log("Game Over - Analytics Result: " + analyticsResult);
             EventManager.OnGameFinish();
         }
     }

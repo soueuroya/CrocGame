@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using Unity.Services.Analytics;
-//using UnityEngine.Analytics;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
-using Unity.Services.Core;
+using System.Collections.Generic;
 
 public class ResultsUIManager : BaseUIMenu
 {
@@ -37,11 +35,6 @@ public class ResultsUIManager : BaseUIMenu
         EventManager.OnRestartGameSelected += GameRestarted;
         EventManager.OnStatisticsResulted += OnStatisticsResulted;
     }
-    async void Start()
-    {
-        await UnityServices.InitializeAsync();
-        await AnalyticsService.Instance.SetAnalyticsEnabled(true);
-    }
     private void OnDestroy()
     {
         if (mainMenuGameButton != null)
@@ -56,8 +49,8 @@ public class ResultsUIManager : BaseUIMenu
     
     private void MainMenuSelected()
     {
-        //AnalyticsResult analyticsResult = Analytics.CustomEvent("Returned to Menu", new Dictionary<string, object> { { "Score", currentDistance } });
-        AnalyticsService.Instance.RecordInternalEvent(new Unity.Services.Analytics.Internal.Event("Returned to Menu", 0));
+        AnalyticsResult analyticsResult = Analytics.CustomEvent("returnedToMenu", new Dictionary<string, object> { { "Score", currentDistance } });
+        Debug.Log("Returned To Menu - Analytics Result: " + analyticsResult);
     }
 
     private void OnStatisticsResulted(GameStatistics gameStatistics)
@@ -73,8 +66,8 @@ public class ResultsUIManager : BaseUIMenu
     }
     private void GameRestarted()
     {
-        //AnalyticsResult analyticsResult = Analytics.CustomEvent("Game restarted", new Dictionary<string, object> { { "Score", currentDistance } });
-        AnalyticsService.Instance.RecordInternalEvent(new Unity.Services.Analytics.Internal.Event("Game restarted", 0));
+        AnalyticsResult analyticsResult = Analytics.CustomEvent("gameRestarted", new Dictionary<string, object> { { "Score", currentDistance } });
+        Debug.Log("Game Restarted - Analytics Result: " + analyticsResult);
     }
     #endregion Initialization
 }
