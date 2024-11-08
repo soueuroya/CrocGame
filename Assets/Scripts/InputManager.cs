@@ -3,8 +3,9 @@
 public class InputManager : MonoBehaviour
 {
     bool isPaused;
-    float verticalInput;
+    bool isStarted;
     Vector2 touchStart;
+    float verticalInput;
     float minSwipeDistance = 50f;
     float minSwipeVelocity = 1000f;
 
@@ -18,6 +19,7 @@ public class InputManager : MonoBehaviour
         EventManager.OnStartGameSelected += StartGame;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += ExitGame;
     }
 
     private void OnDestroy()
@@ -25,10 +27,13 @@ public class InputManager : MonoBehaviour
         EventManager.OnStartGameSelected -= StartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
+        EventManager.OnMainMenuSelected -= ExitGame;
     }
 
     private void Update()
     {
+        if (!isStarted) return;
+
         // Pause/Resume detection
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -149,6 +154,7 @@ public class InputManager : MonoBehaviour
 
     private void StartInput()
     {
+        isStarted = true;
         isPaused = false;
     }
 
@@ -160,6 +166,10 @@ public class InputManager : MonoBehaviour
     private void ResumeGame()
     {
         isPaused = false;
+    }
+    private void ExitGame()
+    {
+        isStarted = false;
     }
     #endregion Private Helpers
 }

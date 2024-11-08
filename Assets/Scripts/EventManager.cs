@@ -73,6 +73,22 @@ public class EventManager : MonoBehaviour
     public static void OnCharacterJump() { FireEvent(OnCharacterJumped); }
 
 
+    public static event EventFired OnCharacterHitten;
+    public static void OnCharacterHit() { FireEvent(OnCharacterHitten); }
+
+
+    public static event EventFired<GameStatistics> OnStatisticsSaved;
+    public static void OnStatisticsSave(GameStatistics gameStatistics) { FireEvent(OnStatisticsSaved, gameStatistics); }
+
+
+    public static event EventFired<GameStatistics> OnStatisticsLoaded;
+    public static void OnStatisticsLoad(GameStatistics gameStatistics) { FireEvent(OnStatisticsLoaded, gameStatistics); }
+
+
+    public static event EventFired OnStatisticsToLoaded;
+    public static void OnStatisticsToLoad() { FireEvent(OnStatisticsToLoaded); }
+
+
     public static event EventFired OnGameEnded;
     public static void OnGameEnd() { FireEvent(OnGameEnded); }
     #endregion Public Methods

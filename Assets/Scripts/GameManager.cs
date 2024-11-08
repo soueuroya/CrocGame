@@ -2,6 +2,8 @@
 
 public class GameManager : MonoBehaviour
 {
+    GameStatistics gameStatistics;
+
     #region Initialization
 
     private void Awake()
@@ -9,6 +11,10 @@ public class GameManager : MonoBehaviour
         EventManager.OnStartGameSelected += StartGame;
         EventManager.OnPauseGameSelected += PauseGame;
         EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += ExitGame;
+        EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
+        EventManager.OnCharacterMoved += CharacterMove;
+        EventManager.OnCharacterHitten += CharacterHitten;
     }
 
     private void OnDestroy()
@@ -16,6 +22,10 @@ public class GameManager : MonoBehaviour
         EventManager.OnStartGameSelected -= StartGame;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
+        EventManager.OnMainMenuSelected -= ExitGame;
+        EventManager.OnStatisticsLoaded += OnStatisticsLoaded;
+        EventManager.OnCharacterMoved -= CharacterMove;
+        EventManager.OnCharacterHitten -= CharacterHitten;
     }
 
     #endregion Initialization
@@ -23,7 +33,12 @@ public class GameManager : MonoBehaviour
     #region Private Helpers
     private void StartGame()
     {
-        
+        EventManager.OnStatisticsToLoad();
+    }
+
+    private void OnStatisticsLoaded(GameStatistics _gameStatistics)
+    {
+        gameStatistics = _gameStatistics;
     }
 
     private void PauseGame()
@@ -35,5 +50,21 @@ public class GameManager : MonoBehaviour
     {
 
     }
+    private void ExitGame()
+    {
+        EventManager.OnStatisticsSave(gameStatistics);
+    }
+
+    private void CharacterHitten()
+    {
+        gameStatistics.IncrementHits();
+        
+    }
+
+    private void CharacterMove(float speed)
+    {
+        gameStatistics.IncrementScore(speed);
+    }
+
     #endregion Private Helpers
 }

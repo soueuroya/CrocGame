@@ -5,11 +5,15 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         EventManager.OnDataDeleted += OnDataDeleted;
+        EventManager.OnStatisticsSaved += OnStatisticsSaved;
+        EventManager.OnStatisticsToLoaded += OnStatisticsToLoaded;
     }
 
     private void OnDestroy()
     {
         EventManager.OnDataDeleted -= OnDataDeleted;
+        EventManager.OnStatisticsSaved -= OnStatisticsSaved;
+        EventManager.OnStatisticsToLoaded -= OnStatisticsToLoaded;
     }
 
 
@@ -25,4 +29,31 @@ public class SaveManager : MonoBehaviour
         SafePrefs.DeleteAll();
         EventManager.OnDataChange();
     }
+
+    private void OnStatisticsSaved(GameStatistics gameStatistics)
+    {
+        SafePrefs.SetFloat("SCORE", gameStatistics.score);
+        SafePrefs.SetInt("MUSHROOMS", gameStatistics.mushrooms);
+        SafePrefs.SetInt("HITS", gameStatistics.hits);
+        SafePrefs.SetInt("OBSTACLES", gameStatistics.obstacles);
+        SafePrefs.SetInt("JUMPS", gameStatistics.jumps);
+        SafePrefs.Save();
+    }
+
+    private void OnStatisticsToLoaded()
+    {
+        EventManager.OnStatisticsLoad(LoadGameStatistics());
+    }
+
+    private GameStatistics LoadGameStatistics()
+    {
+        GameStatistics gameStatistics = new GameStatistics();
+        gameStatistics.score = SafePrefs.GetFloat("SCORE");
+        gameStatistics.jumps = SafePrefs.GetInt("JUMPS");
+        gameStatistics.mushrooms = SafePrefs.GetInt("MUSHROOMS");
+        gameStatistics.hits = SafePrefs.GetInt("HITS");
+        gameStatistics.obstacles = SafePrefs.GetInt("OBSTACLES");
+        return gameStatistics;
+    }
+
 }

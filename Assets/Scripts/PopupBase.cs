@@ -25,21 +25,6 @@ public class PopupBase : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (secondaryButtonText.transform.parent.gameObject.activeSelf)
-            {
-                OnSecondaryClick();
-            }
-            else
-            {
-                OnPrimaryClick();
-            }
-        }
-    }
-
     public virtual void Initialize(PopupProperties popupProperties)
     {
         canvasGroup.blocksRaycasts = true;

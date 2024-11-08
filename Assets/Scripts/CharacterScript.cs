@@ -28,15 +28,12 @@ public class CharacterScript : MonoBehaviour
     private void Awake()
     {
         EventManager.OnStartGameSelected += StartGame;
-        EventManager.OnCharacterJumped += Jump;
-        EventManager.OnPauseGameSelected += PauseGame;
-        EventManager.OnResumeGameSelected += ResumeGame;
-        EventManager.OnMainMenuSelected += MainMenuSelected;
     }
     private void OnDestroy()
     {
-        EventManager.OnCharacterJumped -= Jump;
         EventManager.OnStartGameSelected -= StartGame;
+
+        EventManager.OnCharacterJumped -= Jump;
         EventManager.OnPauseGameSelected -= PauseGame;
         EventManager.OnResumeGameSelected -= ResumeGame;
         EventManager.OnMainMenuSelected -= MainMenuSelected;
@@ -61,6 +58,11 @@ public class CharacterScript : MonoBehaviour
 
     private void StartGame()
     {
+        EventManager.OnCharacterJumped += Jump;
+        EventManager.OnPauseGameSelected += PauseGame;
+        EventManager.OnResumeGameSelected += ResumeGame;
+        EventManager.OnMainMenuSelected += MainMenuSelected;
+
         Invoke("JumpOut", 0.5f);
     }
     private void JumpOut()
@@ -117,6 +119,8 @@ public class CharacterScript : MonoBehaviour
         isGrounded = false;
         rb.velocity = Vector2.up * jumpForce/2;
         anim.SetTrigger("Hit");
+
+        EventManager.OnCharacterHit();
     }
 
     private void Run(float speed)
@@ -127,6 +131,11 @@ public class CharacterScript : MonoBehaviour
     }
     private void MainMenuSelected()
     {
+        EventManager.OnCharacterJumped -= Jump;
+        EventManager.OnPauseGameSelected -= PauseGame;
+        EventManager.OnResumeGameSelected -= ResumeGame;
+        EventManager.OnMainMenuSelected -= MainMenuSelected;
+
         StopAllCoroutines();
         isPaused = false;
         anim.speed = 1;
