@@ -113,7 +113,7 @@ public class CharacterScript : MonoBehaviour
 
         isGrounded = false;
         anim.SetTrigger("Jump");
-        Invoke("Impulse", 0.11f);
+        Invoke("Impulse", 0.05f);
         EventManager.OnCharacterJumpCount();
     }
     private void Impulse()
@@ -124,7 +124,7 @@ public class CharacterScript : MonoBehaviour
     {
         isGrounded = false;
         anim.SetTrigger("Jump");
-        Invoke("StrongImpulse", 0.09f);
+        Invoke("StrongImpulse", 0.03f);
         EventManager.OnCharacterTrampoline();
     }
     private void StrongImpulse()
