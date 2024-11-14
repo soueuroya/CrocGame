@@ -8,6 +8,8 @@ public sealed class Constants
         public static string musicCapVolume = "musicCapVolume";
         public static string sfxCapVolume = "sfxCapVolume";
         public static string screenModeKey = "screenModeKey";
+
+        public static string saveFileName = "gamesave.txt";
     }
 
     public class GameSettings{

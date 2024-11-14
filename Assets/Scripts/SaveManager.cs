@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
@@ -32,13 +33,15 @@ public class SaveManager : MonoBehaviour
 
     private void OnStatisticsSaved(GameStatistics gameStatistics)
     {
-        SafePrefs.SetFloat("SCORE", gameStatistics.totalScore + gameStatistics.currentScore);
-        SafePrefs.SetInt("JUMPS", gameStatistics.totalJumps + gameStatistics.currentJumps);
-        SafePrefs.SetInt("MUSHROOMS", gameStatistics.totalMushrooms + gameStatistics.currentMushrooms);
-        SafePrefs.SetInt("LIFES_USED", gameStatistics.totalLifesUsed + (3-gameStatistics.currentLifes));
-        //SafePrefs.SetInt("HITS", gameStatistics.totalHits + gameStatistics.currentHits);
-        //SafePrefs.SetInt("OBSTACLES", gameStatistics.totalObstacles);
-        SafePrefs.Save();
+        string path = Application.persistentDataPath + "/" + Constants.Prefs.saveFileName;
+
+        gameStatistics.currentLifes = 3;
+        string json = JsonUtility.ToJson(gameStatistics);
+        using (StreamWriter writer = new StreamWriter(path))
+        {
+            writer.WriteLine(json);
+            writer.Close();
+        }
     }
 
     private void OnStatisticsToLoaded()
@@ -49,13 +52,13 @@ public class SaveManager : MonoBehaviour
     private GameStatistics LoadGameStatistics()
     {
         GameStatistics gameStatistics = new GameStatistics();
-        gameStatistics.totalScore = SafePrefs.GetFloat("SCORE");
-        gameStatistics.totalJumps = SafePrefs.GetInt("JUMPS");
-        gameStatistics.totalMushrooms = SafePrefs.GetInt("MUSHROOMS");
-        gameStatistics.totalLifesUsed = SafePrefs.GetInt("LIFES_USED");
-        //gameStatistics.totalHits = SafePrefs.GetInt("HITS");
-        //gameStatistics.totalObstacles = SafePrefs.GetInt("OBSTACLES");
+        string path = Application.persistentDataPath + "/" + Constants.Prefs.saveFileName;
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            gameStatistics = JsonUtility.FromJson<GameStatistics>(json);
+        }
         return gameStatistics;
     }
-
 }
