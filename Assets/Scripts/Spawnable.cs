@@ -35,7 +35,7 @@ public class Spawnable : MonoBehaviour
     {
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -45,7 +45,7 @@ public class Spawnable : MonoBehaviour
         {
             if (rb != null)
             {
-                rb.velocity = new Vector2(-moveSpeed, 0f);
+                rb.linearVelocity = new Vector2(-moveSpeed, 0f);
             }
         }
     }
@@ -59,7 +59,7 @@ public class Spawnable : MonoBehaviour
         isPaused = true;
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 

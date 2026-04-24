@@ -118,7 +118,7 @@ public class CharacterScript : MonoBehaviour
     }
     private void Impulse()
     {
-        rb.velocity = Vector2.up * jumpForce;
+        rb.linearVelocity = Vector2.up * jumpForce;
     }
     private void StrongJump()
     {
@@ -129,12 +129,12 @@ public class CharacterScript : MonoBehaviour
     }
     private void StrongImpulse()
     {
-        rb.velocity = Vector2.up * jumpForce * 1.3f;
+        rb.linearVelocity = Vector2.up * jumpForce * 1.3f;
     }
     private void Hit()
     {
         isGrounded = false;
-        rb.velocity = Vector2.up * jumpForce/2;
+        rb.linearVelocity = Vector2.up * jumpForce/2;
         anim.SetTrigger("Hit");
 
         EventManager.OnCharacterHit();
@@ -183,7 +183,7 @@ public class CharacterScript : MonoBehaviour
             return;
         }
 
-        anim.SetFloat("SpeedY", rb.velocity.y);
+        anim.SetFloat("SpeedY", rb.linearVelocity.y);
     }
     
     IEnumerator RunRoutine(float speed)
